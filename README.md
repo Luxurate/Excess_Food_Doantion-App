@@ -23,4 +23,4 @@ When user deletes his own post
 
 
 When user deletes some other user's post
-![Screenshot_20230427-032259](https://user-images.githubusercontent.com/109758129/234716515-ebefb711-ed08-4c68-9b95-b4f55744ffff.jpg)
+![Screenshot_20230427-032259](https://user-images.githubusercontent.com/109758129/234717337-1701859e-01d8-4ba8-8d0d-e699d62aec38.jpg)
