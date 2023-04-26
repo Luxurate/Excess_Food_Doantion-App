@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "184376115776",
+    "project_id": "leftoverfood-387b5",
+    "storage_bucket": "leftoverfood-387b5.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:184376115776:android:c98fb134f4c83b7c8615a5",
+        "android_client_info": {
+          "package_name": "com.example.leftoverfood"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "184376115776-8r5mbf9v6lre2leuc9toorsdhtaeghjh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.leftoverfood",
+            "certificate_hash": "9e5ef5c7f4f34f5587dd5769ab0782cf3fead89d"
+          }
+        },
+        {
+          "client_id": "184376115776-f8n6obg14jdeaguh43lnn895sh7jp7q4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7J8RnmQmKcEJcUMuyIAaEUkEhF9OIFAY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "184376115776-f8n6obg14jdeaguh43lnn895sh7jp7q4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
