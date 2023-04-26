@@ -1,4 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:fooddonation/reusable_widgets/reusable_widget.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:flutter/material.dart';
@@ -74,9 +75,24 @@ class _SignInScreenState extends State<SignInScreen> {
                           email: _emailTextController.text,
                           password: _passwordTextController.text)
                           .then((value) {
+                        Fluttertoast.showToast(
+                            msg: "Logged In !!",
+                            toastLength: Toast.LENGTH_SHORT,
+                            gravity: ToastGravity.BOTTOM,
+                            timeInSecForIosWeb: 1,
+                            backgroundColor: Colors.lightGreenAccent,
+                            textColor: Colors.white,
+                            fontSize: 16.0);
                         Navigator.push(context, MaterialPageRoute(builder: (context) =>OpeningScreen()));
                       }).onError((error, stackTrace) {
-                        // TODO: Handle error here
+                        Fluttertoast.showToast(
+                                      msg: "Invalid Details !!",
+                                       toastLength: Toast.LENGTH_SHORT,
+                                       gravity: ToastGravity.BOTTOM,
+                                       timeInSecForIosWeb: 1,
+                                       backgroundColor: Colors.red,
+                                       textColor: Colors.white,
+                                       fontSize: 16.0);
                         //print(error);
                       });
                     }),

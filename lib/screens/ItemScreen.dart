@@ -4,6 +4,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
 
 class ItemsScreen extends StatefulWidget {
@@ -154,13 +155,29 @@ class _ItemsScreenState extends State<ItemsScreen> {
     final currentUser = FirebaseAuth.instance.currentUser;
 
     final doc =
-        await FirebaseFirestore.instance.collection('items').doc(docId).get();
+    await FirebaseFirestore.instance.collection('items').doc(docId).get();
     final ownerId = doc['uid'];
     print(docId);
     if (currentUser != null && ownerId == currentUser.uid) {
       await FirebaseFirestore.instance.collection('items').doc(docId).delete();
+      Fluttertoast.showToast(
+          msg: "Successfully Deleted The Post!!",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.lightGreenAccent,
+          textColor: Colors.white,
+          fontSize: 16.0);
     } else {
       print('Current user does not have permission to delete this item.');
+      Fluttertoast.showToast(
+          msg: "User is not authorized to delete this image",
+          toastLength: Toast.LENGTH_SHORT,
+          gravity: ToastGravity.BOTTOM,
+          timeInSecForIosWeb: 1,
+          backgroundColor: Colors.red,
+          textColor: Colors.white,
+          fontSize: 16.0);
     }
   }
 }
