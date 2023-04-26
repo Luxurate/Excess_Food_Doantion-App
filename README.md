@@ -19,10 +19,10 @@
 ![Screenshot_20230427-014640](https://user-images.githubusercontent.com/109758129/234717625-ebf3ebeb-1d08-4b01-93e3-d5a54246235b.jpg)
 
 
-         When user deletes his own post
+         When user deletes his own image / post
 ![Screenshot_20230427-032506 (1)](https://user-images.githubusercontent.com/109758129/234717443-bbf5b769-0ab6-4a88-8438-6eeaa6f48e59.jpg)
 
-         When user deletes some other user's post
+         When user tries to delete some other user's image /post
 ![Screenshot_20230427-032259](https://user-images.githubusercontent.com/109758129/234717337-1701859e-01d8-4ba8-8d0d-e699d62aec38.jpg)
        
        
