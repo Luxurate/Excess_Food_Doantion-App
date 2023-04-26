@@ -36,7 +36,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
           style: TextStyle(
             color: Colors.deepOrangeAccent,
             fontFamily: 'Schyler',
-            fontSize: 24,
+            fontSize: 25,
           ),
         ),
       ),
@@ -133,6 +133,9 @@ class _ItemsScreenState extends State<ItemsScreen> {
                       trailing: IconButton(
                         icon: Icon(Icons.delete),
                         onPressed: () {
+                          String currentUserId =
+                              FirebaseAuth.instance.currentUser!.uid;
+                          print('Current user ID: $currentUserId');
                           _deleteImage(snapshot.data!.docs[index].id);
                         },
                       ),
@@ -148,7 +151,17 @@ class _ItemsScreenState extends State<ItemsScreen> {
   }
 
   void _deleteImage(String docId) async {
-    await FirebaseFirestore.instance.collection('items').doc(docId).delete();
+    final currentUser = FirebaseAuth.instance.currentUser;
+
+    final doc =
+        await FirebaseFirestore.instance.collection('items').doc(docId).get();
+    final ownerId = doc['uid'];
+    print(docId);
+    if (currentUser != null && ownerId == currentUser.uid) {
+      await FirebaseFirestore.instance.collection('items').doc(docId).delete();
+    } else {
+      print('Current user does not have permission to delete this item.');
+    }
   }
 }
 
