@@ -16,7 +16,8 @@ Seeker Screen
 ![Screenshot_20230427-014634](https://user-images.githubusercontent.com/109758129/234693259-2c311a26-b778-458b-90b9-0fb2dfc1df6a.jpg)
 
      After clicking the image
-![Screenshot_20230427-014640](https://user-images.githubusercontent.com/109758129/234693326-8aff92e5-ccd9-4747-920e-39bf35908132.jpg)
+![Screenshot_20230427-014640](https://user-images.githubusercontent.com/109758129/234717625-ebf3ebeb-1d08-4b01-93e3-d5a54246235b.jpg)
+
 
 When user deletes his own post
 ![Screenshot_20230427-032506 (1)](https://user-images.githubusercontent.com/109758129/234717443-bbf5b769-0ab6-4a88-8438-6eeaa6f48e59.jpg)
