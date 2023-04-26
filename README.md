@@ -19,8 +19,7 @@ Seeker Screen
 ![Screenshot_20230427-014640](https://user-images.githubusercontent.com/109758129/234693326-8aff92e5-ccd9-4747-920e-39bf35908132.jpg)
 
 When user deletes his own post
-![image](https://user-images.githubusercontent.com/109758129/234716995-fc5b79fe-6575-4693-8d20-1496bc1be2c8.png)
-
+![Screenshot_20230427-032506 (1)](https://user-images.githubusercontent.com/109758129/234717443-bbf5b769-0ab6-4a88-8438-6eeaa6f48e59.jpg)
 
 When user deletes some other user's post
 ![Screenshot_20230427-032259](https://user-images.githubusercontent.com/109758129/234717337-1701859e-01d8-4ba8-8d0d-e699d62aec38.jpg)
