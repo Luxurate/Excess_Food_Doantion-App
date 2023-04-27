@@ -3,6 +3,8 @@
                                          
          Login UI
 ![Screenshot_20230427-014438 (1)](https://user-images.githubusercontent.com/109758129/234718216-3fa0eba7-ba8c-4b44-b6c0-5b4bc16c1f6d.jpg)
+          New UI Changes   ![Screenshot_20230427-153957](https://user-images.githubusercontent.com/109758129/234832496-58840fb4-dc53-4b7b-ab4b-28bdac4dfe78.jpg)
+
 
          Opening Screen (two buttons and bottom navbar logout)
 ![Screenshot_20230427-014251 (1)](https://user-images.githubusercontent.com/109758129/234718143-6b1ebcf5-81e5-416b-b2e3-3c6ebf2d6d9e.jpg)
