@@ -63,6 +63,7 @@ dependencies:
   flutter_lints: ^2.0.1
   page_transition: ^2.0.9
   firebase_messaging: ^13.1.0
+  carousel_slider: ^4.2.1
 
 
 

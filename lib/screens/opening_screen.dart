@@ -4,6 +4,8 @@ import 'package:fooddonation/screens/signin_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'DonateScreen.dart';
 import 'ItemScreen.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+
 
 class OpeningScreen extends StatelessWidget {
   @override
@@ -19,7 +21,30 @@ class OpeningScreen extends StatelessWidget {
               fit: BoxFit.cover,
             ),
           ),
-          child: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: <Widget>[
+          CarouselSlider(
+          options: CarouselOptions(
+            height: 400,
+            autoPlay: true,
+            enlargeCenterPage: true,
+            aspectRatio: 16/9,
+            autoPlayCurve: Curves.fastOutSlowIn,
+            enableInfiniteScroll: true,
+            autoPlayAnimationDuration: Duration(milliseconds: 800),
+            viewportFraction: 0.8,
+          ),
+          items: [
+            Image.asset('assets/iimage1.png'),
+            Image.asset('assets/iimage2.png'),
+            Image.asset('assets/iimage3.png'),
+            Image.asset('assets/image4.png'),
+            Image.asset('assets/image5.png'),
+            Image.asset('assets/image6.png'),
+          ],
+        ),
+          Center(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
@@ -58,8 +83,6 @@ class OpeningScreen extends StatelessWidget {
           ),
                 ),
                 ),
-
-
                 SizedBox(height: 20),
                 ElevatedButton(
                   style: ButtonStyle(
@@ -87,8 +110,7 @@ class OpeningScreen extends StatelessWidget {
                     ),
                   ),
                   onPressed: () {
-                    Navigator.of(context).push(_createRoute());
-                  },
+                    Navigator.of(context).push(_createRoutec());                  },
                   child: Text(
                     'SEEKER',
                     style: TextStyle(
@@ -103,7 +125,6 @@ class OpeningScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                             builder: (context) => SignInScreen()));
-
                   },
                   child: Text(
                     'Logout',
@@ -118,16 +139,14 @@ class OpeningScreen extends StatelessWidget {
                         }
                         return Colors.white;
                       }),
-
-
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))),
                 ),
               ],
             ),
           ),
+        ]),
         ),
-
       ),
     );
   }
