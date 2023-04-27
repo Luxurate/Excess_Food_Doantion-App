@@ -8,8 +8,11 @@
 
          Opening Screen (two buttons and bottom navbar logout)
 ![Screenshot_20230427-014251 (1)](https://user-images.githubusercontent.com/109758129/234718143-6b1ebcf5-81e5-416b-b2e3-3c6ebf2d6d9e.jpg)
+           New UI Changes  ![Screenshot_20230427-171031](https://user-images.githubusercontent.com/109758129/234851977-86e3b580-faa9-4ed8-b38f-1329a1cfb0f7.jpg)
 
-         Donator Screen
+        
+        
+        Donator Screen
 ![Screenshot_20230427-014256](https://user-images.githubusercontent.com/109758129/234718036-bc9403e0-b653-492a-ac89-8e97502fcc6a.jpg)
 ![Screenshot_20230427-014618](https://user-images.githubusercontent.com/109758129/234718045-0ab54e12-0a5a-4f6b-9a16-a89ce112788b.jpg)
 
