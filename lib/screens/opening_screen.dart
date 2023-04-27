@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fooddonation/reusable_widgets/reusable_widget.dart';
 import 'package:fooddonation/screens/signin_screen.dart';
 import 'package:page_transition/page_transition.dart';
 import 'DonateScreen.dart';
@@ -20,74 +21,113 @@ class OpeningScreen extends StatelessWidget {
           ),
           child: Center(
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.end,
               children: <Widget>[
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.lightGreen,
-                    padding: EdgeInsets.symmetric(horizontal: 80, vertical: 30),
-                    textStyle: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith((states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.green;
+                      }
+                      return Colors.lightGreenAccent;
+                    }),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.symmetric(horizontal: 80, vertical: 30),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
+                    textStyle: MaterialStateProperty.all<TextStyle>(
+                      TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                     ),
                   ),
-                  child: Text('Donator'),
                   onPressed: () {
                     Navigator.of(context).push(_createRoute());
                   },
+        child: Text(
+          'DONATOR',
+          style: TextStyle(
+            fontFamily: 'Schyler',
+            color: Colors.black,
+          ),
                 ),
+                ),
+
+
                 SizedBox(height: 20),
                 ElevatedButton(
-                  style: ElevatedButton.styleFrom(
-                    primary: Colors.indigo,
-                    padding: EdgeInsets.symmetric(horizontal: 83, vertical: 30),
-                    textStyle: TextStyle(
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold,
+                  style: ButtonStyle(
+                    backgroundColor: MaterialStateProperty.resolveWith((states) {
+                      if (states.contains(MaterialState.pressed)) {
+                        return Colors.yellowAccent;
+                      }
+                      return Colors.yellow;
+                    }),
+                    padding: MaterialStateProperty.all<EdgeInsets>(
+                      EdgeInsets.symmetric(horizontal: 95, vertical: 30),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30.0),
+                    textStyle: MaterialStateProperty.all<TextStyle>(
+                      TextStyle(
+                        fontSize: 20,
+                        fontFamily: 'Schyler',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                      RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
                     ),
                   ),
-                  child: Text('Seeker'),
                   onPressed: () {
-
-                    Navigator.of(context).push(_createRoutec());
+                    Navigator.of(context).push(_createRoute());
                   },
+                  child: Text(
+                    'SEEKER',
+                    style: TextStyle(
+                      color: Colors.black,
+                    ),
+                  ),
+                ),
+                SizedBox(height: 50,),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => SignInScreen()));
+
+                  },
+                  child: Text(
+                    'Logout',
+                    style: const TextStyle(
+                        color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16 ),
+                  ),
+
+                  style: ButtonStyle(
+                      backgroundColor: MaterialStateProperty.resolveWith((states) {
+                        if (states.contains(MaterialState.pressed)) {
+                          return Colors.red;
+                        }
+                        return Colors.white;
+                      }),
+
+
+                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))),
                 ),
               ],
             ),
           ),
         ),
-        bottomNavigationBar: BottomAppBar(
-          color: Colors.transparent,
-          child: Stack(
-            alignment: Alignment.center,
-            children: [
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  SizedBox(width: 40),
-                  SizedBox(width: 40),
-                ],
-              ),
-              IconButton(
-                icon: Icon(Icons.logout),
-                onPressed: () {
-                  Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                      builder: (context) => SignInScreen()));
-                  // Do something when the user taps the logout icon
-                },
-              ),
-            ],
-          ),
-          elevation: 3,
-        ),
+
       ),
     );
   }
