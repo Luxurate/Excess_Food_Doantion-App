@@ -26,20 +26,6 @@ class _SignInScreenState extends State<SignInScreen> {
 
       body: Column(
         children: [
-          Container(
-            alignment: Alignment.center,
-            padding: EdgeInsets.only(top: 39, bottom: 1),
-            color: Colors.black,
-            child: Text(
-              'DONATISTIC',
-              style: TextStyle(
-                color: Colors.deepOrangeAccent,
-                fontFamily: 'Schyler',
-                fontSize: 30,
-                fontWeight: FontWeight.bold,
-              ),
-            ),
-          ),
 
 
           Expanded(
@@ -51,6 +37,40 @@ class _SignInScreenState extends State<SignInScreen> {
                     fit: BoxFit.cover,
                   ),
                 ),
+                Positioned.fill(
+                  child: Container(
+                    alignment: Alignment.topCenter,
+                    padding: EdgeInsets.only(top: 100),
+                    child: ShaderMask(
+                      shaderCallback: (bounds) => LinearGradient(
+                        colors: [Colors.orange, Colors.deepOrangeAccent],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        stops: [0.0, 1.0],
+                      ).createShader(bounds),
+                      child: Text(
+                        'DONATISTIC',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontFamily: 'Schyler',
+                          fontSize: 50,
+                          fontWeight: FontWeight.bold,
+                          shadows: [
+                            Shadow(
+                              blurRadius: 10,
+                              color: Colors.black,
+                              offset: Offset(2, 2),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+
+
+
+
                 Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

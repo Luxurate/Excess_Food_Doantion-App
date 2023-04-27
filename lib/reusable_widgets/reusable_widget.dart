@@ -59,7 +59,7 @@ Container firebaseUIButton(BuildContext context, String title, Function onTap) {
       style: ButtonStyle(
           backgroundColor: MaterialStateProperty.resolveWith((states) {
             if (states.contains(MaterialState.pressed)) {
-              return Colors.deepOrangeAccent;
+              return Colors.orange;
             }
             return Colors.white;
           }),
