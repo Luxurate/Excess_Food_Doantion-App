@@ -62,6 +62,7 @@ dependencies:
   hexcolor: ^3.0.1
   flutter_lints: ^2.0.1
   page_transition: ^2.0.9
+  firebase_messaging: ^13.1.0
 
 
 
