@@ -7,6 +7,7 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:image_picker/image_picker.dart';
+import 'package:intl/intl.dart';
 import 'package:path/path.dart';
 import 'opening_screen.dart';
 import '../common/theme_helper.dart';
@@ -229,12 +230,40 @@ class _UploadingImageToFirebaseStorageState
               ),
             ),
             SizedBox(height: 16),
-            TextField(
-              controller: _timeController,
-              decoration: ThemeHelper().textInputDecoration(
-                'Time',
-              ),
-            ),
+    GestureDetector(
+    onTap: () async {
+    final selectedDate = await showDatePicker(
+    context: context,
+    initialDate: DateTime.now(),
+    firstDate: DateTime.now(),
+    lastDate: DateTime.now().add(Duration(days: 365)),
+    );
+    if (selectedDate != null) {
+    setState(() {
+    _timeController.text =
+    DateFormat('yyyy-MM-dd').format(selectedDate);
+    });
+    }
+    final selectedTime = await showTimePicker(
+    context: context,
+    initialTime: TimeOfDay.fromDateTime(DateTime.now()),
+    );
+    if (selectedTime != null) {
+    setState(() {
+    _timeController.text += ' ' +
+    selectedTime.format(context).toString();
+    });
+    }
+    },
+      child: AbsorbPointer(
+        child: TextField(
+          controller: _timeController,
+          decoration: ThemeHelper().textInputDecoration(
+            'Date and Time',
+          ),
+        ),
+      ),
+    ),
             SizedBox(height: 16),
             Align(
               alignment: Alignment.bottomCenter,
