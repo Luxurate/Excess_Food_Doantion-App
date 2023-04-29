@@ -66,6 +66,7 @@ dependencies:
   firebase_messaging: ^13.1.0
   carousel_slider: ^4.2.1
   intl: ^0.17.0
+  share: ^2.0.4
 
 
 

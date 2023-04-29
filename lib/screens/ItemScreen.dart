@@ -1,4 +1,5 @@
 import 'dart:math';
+import 'package:share/share.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -222,12 +223,15 @@ class _ItemsScreenState extends State<ItemsScreen> {
                                 },
                               ),
                               IconButton(
-                                icon: Icon(Icons.share),
+                                icon: Icon(Icons.edit),
                                 color: Colors.black,
                                 onPressed: () {
-                                  // Perform share action here
-                                },
+
+
+                                }
+
                               ),
+
                             ],
                           ),
                         ),
@@ -278,6 +282,8 @@ class _ItemsScreenState extends State<ItemsScreen> {
     }
   }
 }
+
+
 void _showInformation(String docId) async {
   final doc = await FirebaseFirestore.instance.collection('items').doc(docId).get();
   final username = doc['username'];
