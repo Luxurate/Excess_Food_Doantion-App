@@ -74,7 +74,7 @@ class _UploadingImageToFirebaseStorageState
       }
     });
   }*/
-  Future<void> uploadImageToFirebase(BuildContext context, String itemName,
+  Future<void> uploadImageToFirebase(BuildContext context, String userName,String itemName,
       int quantity, int phone, String address, String time) async {
     if (_image == null) {
       return;
@@ -108,6 +108,7 @@ class _UploadingImageToFirebaseStorageState
 
       // Add the item data to the items collection
       await itemsCollection.add({
+        'username' : userName,
         'itemName': itemName,
         'quantity': quantity,
         'phone': phone,
@@ -172,6 +173,7 @@ class _UploadingImageToFirebaseStorageState
   final _phoneController = TextEditingController();
   final _addressController = TextEditingController();
   final _timeController = TextEditingController();
+  final _userNameController = TextEditingController();
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -199,6 +201,13 @@ class _UploadingImageToFirebaseStorageState
                   height: 400,
                 ),
               ),
+            SizedBox(height: 16),
+            TextField(
+              controller: _userNameController,
+              decoration: ThemeHelper().textInputDecoration(
+                'Username',
+              ),
+            ),
             SizedBox(height: 16),
             TextField(
               controller: _itemNameController,
@@ -230,40 +239,47 @@ class _UploadingImageToFirebaseStorageState
               ),
             ),
             SizedBox(height: 16),
-    GestureDetector(
-    onTap: () async {
-    final selectedDate = await showDatePicker(
-    context: context,
-    initialDate: DateTime.now(),
-    firstDate: DateTime.now(),
-    lastDate: DateTime.now().add(Duration(days: 365)),
-    );
-    if (selectedDate != null) {
-    setState(() {
-    _timeController.text =
-    DateFormat('yyyy-MM-dd').format(selectedDate);
-    });
-    }
-    final selectedTime = await showTimePicker(
-    context: context,
-    initialTime: TimeOfDay.fromDateTime(DateTime.now()),
-    );
-    if (selectedTime != null) {
-    setState(() {
-    _timeController.text += ' ' +
-    selectedTime.format(context).toString();
-    });
-    }
-    },
-      child: AbsorbPointer(
-        child: TextField(
-          controller: _timeController,
-          decoration: ThemeHelper().textInputDecoration(
-            'Date and Time',
-          ),
-        ),
-      ),
-    ),
+            GestureDetector(
+              onTap: () async {
+                final selectedDate = await showDatePicker(
+                  context: context,
+                  initialDate: DateTime.now(),
+                  firstDate: DateTime.now(),
+                  lastDate: DateTime.now().add(Duration(days: 365)),
+                );
+                if (selectedDate != null) {
+                  final selectedTime = await showTimePicker(
+                    context: context,
+                    initialTime: TimeOfDay.fromDateTime(DateTime.now()),
+                  );
+                  if (selectedTime != null) {
+                    setState(() {
+                      _timeController.text =
+                          DateFormat('yyyy-MM-dd').format(selectedDate) +
+                              ' ' +
+                              selectedTime.format(context).toString();
+                    });
+                  } else {
+                    // User canceled time selection, clear text field
+                    setState(() {
+                      _timeController.clear();
+                    });
+                  }
+                } else {
+                  // User canceled date selection, clear text field
+                  setState(() {
+                    _timeController.clear();
+                  });
+                }
+              },
+              child: AbsorbPointer(
+                child: TextField(
+                  controller: _timeController,
+                  decoration: ThemeHelper().textInputDecoration('Date and Time'),
+                ),
+              ),
+            ),
+
             SizedBox(height: 16),
             Align(
               alignment: Alignment.bottomCenter,
@@ -330,6 +346,7 @@ class _UploadingImageToFirebaseStorageState
                 }
                 uploadImageToFirebase(
                   context,
+                  _userNameController.text,
                   _itemNameController.text,
                   int.parse(_quantityController.text),
                   int.parse(_phoneController.text),

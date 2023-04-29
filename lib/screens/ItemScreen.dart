@@ -28,10 +28,11 @@ class _ItemsScreenState extends State<ItemsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black,
+      backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.white,
+        elevation: 2,
         title: Text(
           'DONATISTIC',
           style: TextStyle(
@@ -45,8 +46,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
         padding: EdgeInsets.symmetric(horizontal: 9, vertical: 15),
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection('items').snapshots(),
-          builder:
-              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+          builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
               return Text('Something went wrong');
             }
@@ -58,88 +58,183 @@ class _ItemsScreenState extends State<ItemsScreen> {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 10,
-                childAspectRatio: 2,
+                crossAxisSpacing: 1,
+                mainAxisSpacing: 1,
+                childAspectRatio:1.3,
               ),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
                 Map<String, dynamic> data =
-                    snapshot.data!.docs[index].data() as Map<String, dynamic>;
+                snapshot.data!.docs[index].data() as Map<String, dynamic>;
                 return GestureDetector(
                   onTap: () {
                     Navigator.push(
                       context,
                       PageTransition(
                         child: ItemDetailScreen(data),
-                        type: PageTransitionType.size,
-                        alignment: Alignment.center,
+                        type: PageTransitionType.theme,
+                        alignment: Alignment.bottomCenter,
                         duration: Duration(milliseconds: 400),
                       ),
                     );
                   },
-                  child: GridTile(
-                    child: ClipRRect(
+                  child: Container(
+                    decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      child: SizedBox(
-                        width: double.infinity,
-                        child: Image.network(
-                          data['imageUrl'],
-                          fit: BoxFit.cover,
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.7),
+                          spreadRadius: 3,
+                          blurRadius: 10,
+                          offset: Offset(0, 9),
                         ),
+                      ],
+                      // Added edge insets
+                      border: Border.all(
+                        color: Colors.grey,
+                        width: 1,
                       ),
                     ),
-                    footer: GridTileBar(
-                      backgroundColor: Colors.black.withOpacity(0.0),
-                      title: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.black.withOpacity(0.6),
-                        ),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                        child: Text(
-                          data['itemName'],
-                          style: TextStyle(
-                            fontSize: 20,
-                            fontFamily: 'GodshineSansBold',
-                            color: Colors.white,
+
+
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Stack(
+                    children: [
+                    ClipRRect(
+                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
+                  child: Image.network(
+                    data['imageUrl'],
+                    fit: BoxFit.fill,
+                    height: 400,
+                    width: 389,
+                  ),
+                ),
+                Positioned(
+                top: 8,
+                left: 8,
+                child: Container(
+                decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(90),
+                color: Colors.white.withOpacity(1),
+                ),
+                padding: EdgeInsets.symmetric(vertical: 1, horizontal: 8),
+                child: Text(
+                'Qty  :  ${data['quantity']}',
+                style: TextStyle(
+                fontSize: 14,
+                color: Colors.red,
+                fontFamily: 'Schyler',
+                ),
+                ),
+                ),
+                ),
+                      Positioned(
+                        top: 200,
+                        left: 8,
+                        child: Container(
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            color: Colors.white.withOpacity(1),
                           ),
-                        ),
-                      ),
-                      subtitle: Container(
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                          color: Colors.black.withOpacity(0.9),
-                          boxShadow: [
-                            BoxShadow(
-                              color: Colors.black.withOpacity(1),
-                              spreadRadius: 1,
-                              blurRadius: 50,
-                              offset: Offset(0, 9),
+                          padding: EdgeInsets.symmetric(vertical: 1, horizontal: 8),
+                          child: Text(
+                            ' ${data['itemName']}',
+                            style: TextStyle(
+                              fontSize: 20,
+                              color: Colors.black,
+                              fontFamily: 'Schyler',
                             ),
-                          ],
-                        ),
-                        padding:
-                            EdgeInsets.symmetric(vertical: 4, horizontal: 8),
-                        child: Text(
-                          'Quantity: ${data['quantity']}',
-                          style: TextStyle(
-                            fontSize: 10,
-                            color: Colors.red,
-                            fontFamily: 'Schyler',
                           ),
                         ),
                       ),
-                      trailing: IconButton(
-                        icon: Icon(Icons.delete),
-                        onPressed: () {
-                          String currentUserId =
-                              FirebaseAuth.instance.currentUser!.uid;
-                          print('Current user ID: $currentUserId');
-                          _deleteImage(snapshot.data!.docs[index].id);
-                        },
-                      ),
+                Positioned(
+                top: 8,
+                right: 8,
+                child: Icon(
+                Icons.check_circle,
+                color: Colors.green,
+                size: 20,
+                ),
+                ),
+                ],
+                ),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+
+
+
+                            ],
+                          ),
+                        ),
+                        Container(
+                          padding: const EdgeInsets.only(right: 8, top: 1, bottom: 0),
+                          child: Row(
+                            children: [
+                              IconButton(
+                                icon: Icon(Icons.delete_forever),
+                                color: Colors.black,
+                                onPressed: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text("Confirm Delete"),
+                                        content: Text("Are you sure you want to delete this item?"),
+                                        actions: [
+                                          TextButton(
+                                            child: Text("Cancel"),
+                                            onPressed: () {
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                          TextButton(
+                                            child: Text("Delete"),
+                                            onPressed: () {
+                                              String currentUserId = FirebaseAuth.instance.currentUser!.uid;
+                                              print('Current user ID: $currentUserId');
+                                              _deleteImage(snapshot.data!.docs[index].id);
+                                              Navigator.of(context).pop();
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
+                                },
+                              ),
+
+
+                              IconButton(
+                                icon: Icon(Icons.info),
+                                color: Colors.black,
+                                onPressed: () {
+                                  _showInformation(snapshot.data!.docs[index].id);
+
+                                  // Perform edit action here
+                                },
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.share),
+                                color: Colors.black,
+                                onPressed: () {
+                                  // Perform share action here
+                                },
+                              ),
+                            ],
+                          ),
+                        ),
+
+
+
+                      ],
                     ),
                   ),
                 );
@@ -150,6 +245,8 @@ class _ItemsScreenState extends State<ItemsScreen> {
       ),
     );
   }
+
+
 
   void _deleteImage(String docId) async {
     final currentUser = FirebaseAuth.instance.currentUser;
@@ -171,7 +268,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
     } else {
       print('Current user does not have permission to delete this item.');
       Fluttertoast.showToast(
-          msg: "User is not authorized to delete this image",
+          msg: "You are not authorized to delete this!!",
           toastLength: Toast.LENGTH_SHORT,
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
@@ -181,6 +278,20 @@ class _ItemsScreenState extends State<ItemsScreen> {
     }
   }
 }
+void _showInformation(String docId) async {
+  final doc = await FirebaseFirestore.instance.collection('items').doc(docId).get();
+  final username = doc['username'];
+  Fluttertoast.showToast(
+    msg: "Uploaded by: $username",
+    toastLength: Toast.LENGTH_SHORT,
+    gravity: ToastGravity.BOTTOM,
+    timeInSecForIosWeb: 1,
+    backgroundColor: Colors.grey[600],
+    textColor: Colors.white,
+    fontSize: 16.0,
+  );
+}
+
 
 class ItemDetailScreen extends StatefulWidget {
   final Map<String, dynamic> data;
@@ -195,16 +306,21 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
   final FirebaseAuth auth = FirebaseAuth.instance;
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   late DocumentReference _documentRefernce;
+  int _currentIndex = 0;
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.black.withOpacity(0.9),
+      backgroundColor: Colors.white,
+
       appBar: AppBar(
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.lightBlue,
+
         title: Text(
           widget.data['itemName'],
           style: TextStyle(
+            height: 1,
+            wordSpacing: 4,
             fontFamily: 'Schyler',
             fontWeight: FontWeight.bold,
             fontSize: 20,
@@ -216,58 +332,59 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ClipRRect(
-            borderRadius: BorderRadius.circular(0),
+            borderRadius: BorderRadius.circular(16),
             child: Image.network(
               widget.data['imageUrl'],
-              width: 410,
+              width: 412,
               height: 330,
-              fit: BoxFit.cover,
+              fit: BoxFit.fill,
+
             ),
           ),
           SizedBox(height: 1),
           Container(
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.black.withOpacity(0.9),
+              borderRadius: BorderRadius.circular(80),
+              color: Colors.red.withOpacity(0.2),
             ),
-            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
             child: Text(
               'Quantity: ${widget.data['quantity']}',
               style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
+                fontSize: 18,
+                color: Colors.black,
                 fontFamily: 'Schyler',
               ),
             ),
           ),
-          SizedBox(height: 1),
+          SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.black.withOpacity(0.9),
+              color: Colors.white,
             ),
-            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
             child: Text(
-              'Phone   :     ${widget.data['phone']}',
+              'Phone: ${widget.data['phone']}',
               style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
+                fontSize: 18,
+                color: Colors.black,
                 fontFamily: 'Schyler',
               ),
             ),
           ),
-          SizedBox(height: 1),
+          SizedBox(height: 8),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.black.withOpacity(0.9),
+              color: Colors.white,
             ),
-            padding: EdgeInsets.symmetric(vertical: 6, horizontal: 20),
+            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
             child: Text(
-              'Time    :       ${widget.data['time']}',
+              'Time: ${widget.data['time']}',
               style: TextStyle(
-                fontSize: 16,
-                color: Colors.white,
+                fontSize: 18,
+                color: Colors.black,
                 fontFamily: 'Schyler',
               ),
             ),
@@ -276,14 +393,15 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
-              color: Colors.black.withOpacity(0.9),
+              color: Colors.white,
             ),
-            padding: EdgeInsets.symmetric(vertical: 10, horizontal: 16),
+            padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
             child: Text(
-              'Address  :        ${widget.data['address']}',
+              'Address: ${widget.data['address']}',
               style: TextStyle(
-                fontSize: 15,
-                color: Colors.white,
+                fontSize: 18,
+                color: Colors.black,
+                fontFamily: 'Schyler',
               ),
             ),
           ),
