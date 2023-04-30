@@ -201,7 +201,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                             children: [
                               IconButton(
                                 icon: Icon(Icons.delete_forever),
-                                color: Colors.black,
+                                color: Colors.red,
                                 onPressed: () {
                                   showDialog(
                                     context: context,
@@ -235,7 +235,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
 
                               IconButton(
                                 icon: Icon(Icons.info),
-                                color: Colors.black,
+                                color: Colors.blueGrey,
                                 onPressed: () {
                                   _showInformation(snapshot.data!.docs[index].id);
 
@@ -244,7 +244,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                               ),
                               IconButton(
                                 icon: Icon(Icons.handshake_outlined),
-                                color: Colors.black,
+                                color: Colors.orange,
                                 onPressed: () async {
                                   bool donated = await showDialog(
                                     context: context,
