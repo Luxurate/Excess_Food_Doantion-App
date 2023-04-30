@@ -180,15 +180,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                           ),
                         ),
                       ),
-                Positioned(
-                top: 8,
-                right: 8,
-                child: Icon(
-                Icons.check_circle,
-                color: Colors.green,
-                size: 20,
-                ),
-                ),
+
                 ],
                 ),
                         ),
@@ -598,10 +590,10 @@ class _DonatedpageState extends State<Donatedpage> {
 
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
+                crossAxisCount: 1,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
-                childAspectRatio: 0.5,
+                childAspectRatio: 2,
               ),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
@@ -674,7 +666,7 @@ class _DonatedpageState extends State<Donatedpage> {
                                 ),
                               ),
                               Positioned(
-                                top: 256,
+                                top: 156,
                                 left: 8,
                                 child: Container(
                                   decoration: BoxDecoration(
