@@ -59,8 +59,8 @@ class _ItemsScreenState extends State<ItemsScreen> {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                crossAxisSpacing: 1,
-                mainAxisSpacing: 1,
+                crossAxisSpacing: 10,
+                mainAxisSpacing: 15,
                 childAspectRatio:1.3,
               ),
               itemCount: snapshot.data!.docs.length,
@@ -81,7 +81,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(20),
+                      borderRadius: BorderRadius.circular(11),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -93,8 +93,8 @@ class _ItemsScreenState extends State<ItemsScreen> {
                       ],
                       // Added edge insets
                       border: Border.all(
-                        color: Colors.grey,
-                        width: 1,
+                        color: Colors.black,
+                        width: 2,
                       ),
                     ),
 
@@ -105,16 +105,22 @@ class _ItemsScreenState extends State<ItemsScreen> {
                         Expanded(
                           child: Stack(
                     children: [
-                    ClipRRect(
-                    borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
-                  child: Image.network(
-                    data['imageUrl'],
-                    fit: BoxFit.fill,
-                    height: 400,
-                    width: 389,
-                  ),
-                ),
-                Positioned(
+                      ClipRRect(
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(0)
+                        , bottom: Radius.circular(9)),
+                        child: Padding(
+                          padding: EdgeInsets.only(top: 4),
+
+                          child: Image.network(
+                            data['imageUrl'],
+                            fit: BoxFit.cover,
+                            height: 410,
+                            width: 380,
+                          ),
+                        ),
+                      ),
+
+                      Positioned(
                 top: 8,
                 left: 8,
                 child: Container(
