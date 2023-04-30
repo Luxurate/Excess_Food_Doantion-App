@@ -245,19 +245,37 @@ class _ItemsScreenState extends State<ItemsScreen> {
                               IconButton(
                                 icon: Icon(Icons.handshake_outlined),
                                 color: Colors.black,
-                                onPressed: ()  {
-                                  _handImage(snapshot.data!.docs[index].id);
+                                onPressed: () async {
+                                  bool donated = await showDialog(
+                                    context: context,
+                                    builder: (BuildContext context) {
+                                      return AlertDialog(
+                                        title: Text('Have you donated?'),
+                                        actions: <Widget>[
 
+                                          TextButton(
+                                            child: Text('No'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop(false);
+                                            },
+                                          ),
+                                          TextButton(
+                                            child: Text('Yes'),
+                                            onPressed: () {
+                                              Navigator.of(context).pop(true);
+                                            },
+                                          ),
+                                        ],
+                                      );
+                                    },
+                                  );
 
-
-
-
-
-
-
+                                  if (donated == true) {
+                                    _handImage(snapshot.data!.docs[index].id);
+                                  }
                                 },
+                              ),
 
-                                  ),
 
 
 
