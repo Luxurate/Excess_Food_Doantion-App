@@ -1,5 +1,7 @@
 import 'dart:math';
 import 'package:share/share.dart';
+import 'package:url_launcher/url_launcher.dart';
+import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
@@ -7,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
+
+
 
 class ItemsScreen extends StatefulWidget {
   @override
@@ -58,10 +62,10 @@ class _ItemsScreenState extends State<ItemsScreen> {
 
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
-                crossAxisSpacing: 10,
-                mainAxisSpacing: 15,
-                childAspectRatio:1.3,
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio:0.5,
               ),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
@@ -75,7 +79,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                         child: ItemDetailScreen(data),
                         type: PageTransitionType.theme,
                         alignment: Alignment.bottomCenter,
-                        duration: Duration(milliseconds: 400),
+                        duration: Duration(milliseconds: 700),
                       ),
                     );
                   },
@@ -140,7 +144,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 ),
                 ),
                       Positioned(
-                        top: 200,
+                        top: 256,
                         left: 8,
                         child: Container(
                           decoration: BoxDecoration(
@@ -310,6 +314,8 @@ class ItemDetailScreen extends StatefulWidget {
 
   ItemDetailScreen(this.data);
 
+  String? get itemDocId => null;
+
   @override
   _ItemDetailScreenState createState() => _ItemDetailScreenState();
 }
@@ -319,6 +325,8 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
   late DocumentReference _documentRefernce;
   int _currentIndex = 0;
+
+  String? get itemId => null;
 
   @override
   Widget build(BuildContext context) {
@@ -432,13 +440,20 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
               ),
               child: Center(
                 child: IconButton(
-                  icon: Icon(Icons.chat_bubble),
+                  icon: Icon(Icons.call),
                   color: Colors.greenAccent,
-
-                  onPressed: () {
-                    // Add your functionality here for when the chat button is pressed
+                  onPressed: () async {
+                    final phone = widget.data['phone'].toString();
+                    print(phone);
+                    final result = await FlutterPhoneDirectCaller.callNumber(phone);
+                    if (!result!) {
+                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                        content: Text('Failed to make phone call.'),
+                      ));
+                    }
                   },
                 ),
+
               ),
             ),
           ),
