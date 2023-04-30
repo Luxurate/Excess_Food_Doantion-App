@@ -595,7 +595,7 @@ class _DonatedpageState extends State<Donatedpage> {
       body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 9, vertical: 15),
         child: StreamBuilder<QuerySnapshot>(
-          stream: FirebaseFirestore.instance.collection('items').snapshots(),
+          stream: FirebaseFirestore.instance.collection('donations').snapshots(),
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
