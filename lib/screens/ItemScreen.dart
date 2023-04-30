@@ -32,7 +32,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.black,
         elevation: 2,
         title: Text(
           'DONATISTIC',
@@ -326,8 +326,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
       backgroundColor: Colors.white,
 
       appBar: AppBar(
-        backgroundColor: Colors.lightBlue,
-
+        backgroundColor: Colors.black,
         title: Text(
           widget.data['itemName'],
           style: TextStyle(
@@ -369,7 +368,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
               ),
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 1),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -381,11 +380,11 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,
-                fontFamily: 'Schyler',
+                fontFamily: 'SimpleSans',
               ),
             ),
           ),
-          SizedBox(height: 8),
+          SizedBox(height: 1),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -393,15 +392,15 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             ),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
             child: Text(
-              'Time: ${widget.data['time']}',
+              'Pickup Time: ${widget.data['time']}',
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,
-                fontFamily: 'Schyler',
+                fontFamily: 'SimpleSans',
               ),
             ),
           ),
-          SizedBox(height: 16),
+          SizedBox(height: 1),
           Container(
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
@@ -413,7 +412,33 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,
-                fontFamily: 'Schyler',
+                fontFamily: 'SimpleSans',
+              ),
+            ),
+          ),
+          Spacer(), // Add a spacer to push the chat button to the bottom
+          GestureDetector(
+            onTap: () {
+              // Add your functionality here for when the chat button is pressed
+            },
+            child: Container(
+              height: 50,
+              width: double.infinity,
+              decoration: BoxDecoration(
+                color: Colors.black,
+                borderRadius: BorderRadius.vertical(
+                  top: Radius.circular(10),
+                ),
+              ),
+              child: Center(
+                child: IconButton(
+                  icon: Icon(Icons.chat_bubble),
+                  color: Colors.greenAccent,
+
+                  onPressed: () {
+                    // Add your functionality here for when the chat button is pressed
+                  },
+                ),
               ),
             ),
           ),
