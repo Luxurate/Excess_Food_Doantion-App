@@ -52,7 +52,7 @@ class OpeningScreen extends StatelessWidget {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith((states) {
                       if (states.contains(MaterialState.pressed)) {
-                        return Colors.green;
+                        return Colors.orangeAccent;
                       }
                       return Colors.lightGreenAccent;
                     }),
@@ -61,9 +61,9 @@ class OpeningScreen extends StatelessWidget {
                     ),
                     textStyle: MaterialStateProperty.all<TextStyle>(
                       TextStyle(
-                        fontSize: 20,
+                        fontSize: 29,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black,
+                        color: Colors.white,
                       ),
                     ),
                     shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -78,8 +78,8 @@ class OpeningScreen extends StatelessWidget {
         child: Text(
           'DONATOR',
           style: TextStyle(
-            fontFamily: 'Schyler',
-            color: Colors.black,
+            fontFamily: 'Braah',
+            color: Colors.green,
           ),
                 ),
                 ),
@@ -88,7 +88,7 @@ class OpeningScreen extends StatelessWidget {
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.resolveWith((states) {
                       if (states.contains(MaterialState.pressed)) {
-                        return Colors.yellowAccent;
+                        return Colors.tealAccent;
                       }
                       return Colors.yellow;
                     }),
@@ -97,8 +97,8 @@ class OpeningScreen extends StatelessWidget {
                     ),
                     textStyle: MaterialStateProperty.all<TextStyle>(
                       TextStyle(
-                        fontSize: 20,
-                        fontFamily: 'Schyler',
+                        fontSize: 29,
+                        fontFamily: 'Braah',
                         fontWeight: FontWeight.bold,
                         color: Colors.white,
                       ),
@@ -114,7 +114,7 @@ class OpeningScreen extends StatelessWidget {
                   child: Text(
                     'SEEKER',
                     style: TextStyle(
-                      color: Colors.black,
+                      color: Colors.red,
                     ),
                   ),
                 ),
@@ -127,7 +127,7 @@ class OpeningScreen extends StatelessWidget {
                             builder: (context) => SignInScreen()));
                   },
                   child: Text(
-                    'Logout',
+                    'LOGOUT',
                     style: const TextStyle(
                         color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16 ),
                   ),
@@ -135,9 +135,9 @@ class OpeningScreen extends StatelessWidget {
                   style: ButtonStyle(
                       backgroundColor: MaterialStateProperty.resolveWith((states) {
                         if (states.contains(MaterialState.pressed)) {
-                          return Colors.red;
+                          return Colors.black;
                         }
-                        return Colors.white;
+                        return Colors.redAccent;
                       }),
                       shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                           RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))),

@@ -30,6 +30,10 @@ class _ItemsScreenState extends State<ItemsScreen> {
     });
   }
 
+
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,8 +50,22 @@ class _ItemsScreenState extends State<ItemsScreen> {
             fontSize: 25,
           ),
         ),
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(Icons.bookmark),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => Donatedpage()));
+
+            },
+          ),
+        ],
+
       ),
-      body: Padding(
+
+        body: Padding(
         padding: EdgeInsets.symmetric(horizontal: 9, vertical: 15),
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection('items').snapshots(),
@@ -79,7 +97,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                         child: ItemDetailScreen(data),
                         type: PageTransitionType.theme,
                         alignment: Alignment.bottomCenter,
-                        duration: Duration(milliseconds: 700),
+                        duration: Duration(milliseconds: 900),
                       ),
                     );
                   },
@@ -157,7 +175,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                             style: TextStyle(
                               fontSize: 20,
                               color: Colors.black,
-                              fontFamily: 'Schyler',
+                              fontFamily: 'JoseBold',
                             ),
                           ),
                         ),
@@ -233,14 +251,23 @@ class _ItemsScreenState extends State<ItemsScreen> {
                                 },
                               ),
                               IconButton(
-                                icon: Icon(Icons.edit),
+                                icon: Icon(Icons.handshake_outlined),
                                 color: Colors.black,
-                                onPressed: () {
+                                onPressed: ()  {
+                                  _handImage(snapshot.data!.docs[index].id);
 
 
-                                }
 
-                              ),
+
+
+
+
+
+                                },
+
+                                  ),
+
+
 
                             ],
                           ),
@@ -257,10 +284,22 @@ class _ItemsScreenState extends State<ItemsScreen> {
           },
         ),
       ),
+
+
     );
   }
 
-
+  void _onItemTappeds(int index) {
+    setState(() {
+      _selectedIndex = index;
+      if (index == 1) {
+        Navigator.push(
+          context,
+          MaterialPageRoute(builder: (context) => Donatedpage()),
+        );
+      }
+    });
+  }
 
   void _deleteImage(String docId) async {
     final currentUser = FirebaseAuth.instance.currentUser;
@@ -292,6 +331,44 @@ class _ItemsScreenState extends State<ItemsScreen> {
     }
   }
 }
+
+void _handImage(String docId) async {
+  final currentUser = FirebaseAuth.instance.currentUser;
+
+  final doc = await FirebaseFirestore.instance.collection('items')
+      .doc(docId)
+      .get();
+  final ownerId = doc['uid'];
+
+  if (currentUser != null && ownerId == currentUser.uid) {
+    // Copy the document to the "donations" collection
+    await FirebaseFirestore.instance.collection('donations').doc(docId).set(
+        doc.data()!);
+
+    // Delete the document from the "items" collection
+    await FirebaseFirestore.instance.collection('items').doc(docId).delete();
+    Fluttertoast.showToast(
+        msg: "Successfully Added the Item to Donated Collection!!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.lightGreenAccent,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  } else {
+    print('This is not Your Item!!');
+    Fluttertoast.showToast(
+        msg: "This is not Your Item!!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+}
+
 
 
 void _showInformation(String docId) async {
@@ -462,3 +539,197 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
     );
   }
 }
+
+
+
+class Donatedpage extends StatefulWidget {
+  @override
+  _DonatedpageState createState() => _DonatedpageState();
+}
+
+class _DonatedpageState extends State<Donatedpage> {
+  int _selectedIndex = 0;
+  static List<Widget> _widgetOptions = <Widget>[
+    Donatedpage(),
+    //ProfileScreen(),
+  ];
+
+  void _onItemTapped(int index) {
+    setState(() {
+      _selectedIndex = index;
+    });
+  }
+
+
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+        centerTitle: true,
+        backgroundColor: Colors.black,
+        elevation: 2,
+        title: Text(
+          'YOUR DONATIONS',
+          style: TextStyle(
+            color: Colors.deepOrangeAccent,
+            fontFamily: 'Schyler',
+            fontSize: 25,
+          ),
+        ),
+
+      ),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 9, vertical: 15),
+        child: StreamBuilder<QuerySnapshot>(
+          stream: FirebaseFirestore.instance.collection('items').snapshots(),
+          builder: (BuildContext context,
+              AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Something went wrong');
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(child: CircularProgressIndicator());
+            }
+
+            return GridView.builder(
+              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2,
+                crossAxisSpacing: 8,
+                mainAxisSpacing: 8,
+                childAspectRatio: 0.5,
+              ),
+              itemCount: snapshot.data!.docs.length,
+              itemBuilder: (BuildContext context, int index) {
+                Map<String, dynamic> data =
+                snapshot.data!.docs[index].data() as Map<String, dynamic>;
+                return GestureDetector(
+                  onTap: () {
+
+                  },
+                  child: Container(
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(11),
+                      color: Colors.white,
+                      boxShadow: [
+                        BoxShadow(
+                          color: Colors.grey.withOpacity(0.7),
+                          spreadRadius: 3,
+                          blurRadius: 10,
+                          offset: Offset(0, 9),
+                        ),
+                      ],
+                      // Added edge insets
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 2,
+                      ),
+                    ),
+
+
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Expanded(
+                          child: Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: BorderRadius.vertical(
+                                    top: Radius.circular(0)
+                                    , bottom: Radius.circular(9)),
+                                child: Padding(
+                                  padding: EdgeInsets.only(top: 4),
+
+                                  child: Image.network(
+                                    data['imageUrl'],
+                                    fit: BoxFit.cover,
+                                    height: 410,
+                                    width: 380,
+                                  ),
+                                ),
+                              ),
+
+                              Positioned(
+                                top: 8,
+                                left: 8,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(90),
+                                    color: Colors.white.withOpacity(1),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 1, horizontal: 8),
+                                  child: Text(
+                                    'Qty  :  ${data['quantity']}',
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      color: Colors.red,
+                                      fontFamily: 'Schyler',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 256,
+                                left: 8,
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                    borderRadius: BorderRadius.circular(50),
+                                    color: Colors.white.withOpacity(1),
+                                  ),
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 1, horizontal: 8),
+                                  child: Text(
+                                    ' ${data['itemName']}',
+                                    style: TextStyle(
+                                      fontSize: 20,
+                                      color: Colors.black,
+                                      fontFamily: 'JoseBold',
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Positioned(
+                                top: 8,
+                                right: 8,
+                                child: Icon(
+                                  Icons.check_circle,
+                                  color: Colors.green,
+                                  size: 20,
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+
+                        Container(
+                          padding: const EdgeInsets.only(
+                              right: 8, top: 1, bottom: 0),
+                          child: Row(
+                            children: [
+
+
+
+
+
+
+                            ],
+                          ),
+                        ),
+
+
+                      ],
+                    ),
+                  ),
+                );
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }}

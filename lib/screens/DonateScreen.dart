@@ -170,10 +170,12 @@ class _UploadingImageToFirebaseStorageState
   @override
   final _itemNameController = TextEditingController();
   final _quantityController = TextEditingController();
-  final _phoneController = TextEditingController();
+
   final _addressController = TextEditingController();
   final _timeController = TextEditingController();
   final _userNameController = TextEditingController();
+  TextEditingController _phoneController = TextEditingController(text: '+91');
+
 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -224,13 +226,12 @@ class _UploadingImageToFirebaseStorageState
               ),
             ),
             SizedBox(height: 16),
-            TextField(
-              controller: _phoneController,
-              keyboardType: TextInputType.phone,
-              decoration: ThemeHelper().textInputDecoration(
-                'Phone Number',
-              ),
-            ),
+    TextField(
+    controller: _phoneController,
+    keyboardType: TextInputType.phone,
+    decoration: ThemeHelper().textInputDecoration('Phone Number'),
+    ),
+
             SizedBox(height: 16),
             TextField(
               controller: _addressController,

@@ -120,10 +120,10 @@ flutter:
        fonts:
          - asset: fonts/SimplySans.ttf
 
-     - family: Mistery
+     - family: JoseBold
 
        fonts:
-         - asset: fonts/Mistery.otf
+         - asset: fonts/JoseBold.ttf
      - family: Abiloney
 
        fonts:
@@ -132,10 +132,10 @@ flutter:
 
        fonts:
          - asset: fonts/Thifloss.otf
-     - family: GodshineSansBold
+     - family: Braah
 
        fonts:
-         - asset: fonts/GodshineSansBold.ttf
+         - asset: fonts/Braah.ttf
 
 
 
