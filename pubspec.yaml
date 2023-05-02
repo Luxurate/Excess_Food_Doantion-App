@@ -69,6 +69,7 @@ dependencies:
   share: ^2.0.4
   url_launcher: ^6.1.10
   flutter_phone_direct_caller: ^2.1.1
+  google_maps: ^6.2.0
 
 
 

@@ -459,7 +459,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,
-                fontFamily: 'Schyler',
+                fontFamily: 'JoseBold',
               ),
             ),
           ),
@@ -473,7 +473,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             child: Text(
               'Phone: ${widget.data['phone']}',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 15,
                 color: Colors.black,
                 fontFamily: 'SimpleSans',
               ),
@@ -489,7 +489,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             child: Text(
               'Pickup Time: ${widget.data['time']}',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 15,
                 color: Colors.black,
                 fontFamily: 'SimpleSans',
               ),
@@ -505,7 +505,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             child: Text(
               'Address: ${widget.data['address']}',
               style: TextStyle(
-                fontSize: 18,
+                fontSize: 15,
                 color: Colors.black,
                 fontFamily: 'SimpleSans',
               ),
