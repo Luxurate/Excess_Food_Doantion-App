@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -170,11 +171,11 @@ class _UploadingImageToFirebaseStorageState
   @override
   final _itemNameController = TextEditingController();
   final _quantityController = TextEditingController();
-
+  final _phoneController = TextEditingController();
   final _addressController = TextEditingController();
   final _timeController = TextEditingController();
   final _userNameController = TextEditingController();
-  TextEditingController _phoneController = TextEditingController(text: '+91');
+
 
 
   Widget build(BuildContext context) {
@@ -207,8 +208,12 @@ class _UploadingImageToFirebaseStorageState
             TextField(
               controller: _userNameController,
               decoration: ThemeHelper().textInputDecoration(
-                'Username',
-              ),
+                'Username', ),
+                inputFormatters: [
+                  FilteringTextInputFormatter.allow(RegExp(r'[a-z, A-Z]')),
+
+                ],
+
             ),
             SizedBox(height: 16),
             TextField(
@@ -224,15 +229,24 @@ class _UploadingImageToFirebaseStorageState
               decoration: ThemeHelper().textInputDecoration(
                 'Quantity',
               ),
+              inputFormatters: [
+                FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+
+              ],
             ),
             SizedBox(height: 16),
     TextField(
     controller: _phoneController,
     keyboardType: TextInputType.phone,
     decoration: ThemeHelper().textInputDecoration('Phone Number'),
+    inputFormatters: [
+    FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
+    LengthLimitingTextInputFormatter(10),
+    ],
     ),
 
-            SizedBox(height: 16),
+
+    SizedBox(height: 16),
             TextField(
               controller: _addressController,
               decoration: ThemeHelper().textInputDecoration(
