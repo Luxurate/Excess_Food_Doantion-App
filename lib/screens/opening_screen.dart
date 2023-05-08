@@ -19,7 +19,7 @@ class OpeningScreen extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
             SizedBox(
-              height: 250,
+              height: 200,
             ),
             Text(
               'Want To Share Food?',

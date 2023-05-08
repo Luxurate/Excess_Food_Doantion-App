@@ -180,13 +180,15 @@ class _UploadingImageToFirebaseStorageState
 
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       appBar: AppBar(
+        backgroundColor: Colors.amber,
         title: Text(
           'Donation Poll',
           style: TextStyle(
             fontSize: 24,
             fontWeight: FontWeight.bold,
-            color: Colors.white,
+            color: Colors.black,
             fontFamily: 'Schyler',
           ),
         ),
@@ -311,6 +313,7 @@ class _UploadingImageToFirebaseStorageState
                             children: [
                               ListTile(
                                 leading: Icon(Icons.camera),
+
                                 title: Text(
                                   'Take A Picture...',
                                   style: TextStyle(
@@ -345,6 +348,7 @@ class _UploadingImageToFirebaseStorageState
                   },
                   icon: Icon(
                     Icons.camera_alt,
+                    color: Colors.black,
                     size: 65.0,
                   ),
                 ),
