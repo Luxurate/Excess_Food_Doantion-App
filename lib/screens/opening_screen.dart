@@ -1,3 +1,5 @@
+import 'dart:io';
+import 'signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddonation/reusable_widgets/reusable_widget.dart';
 import 'package:fooddonation/screens/signin_screen.dart';
@@ -6,156 +8,115 @@ import 'DonateScreen.dart';
 import 'ItemScreen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-
 class OpeningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-
+      title: 'My App',
       home: Scaffold(
-        body: Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage('assets/login_bg.png'),
-              fit: BoxFit.cover,
+        backgroundColor: Colors.white,
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.end,
+          children: [
+            SizedBox(
+              height: 250,
             ),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: <Widget>[
-          CarouselSlider(
-          options: CarouselOptions(
-            height: 400,
-            autoPlay: true,
-            enlargeCenterPage: true,
-            aspectRatio: 16/9,
-            autoPlayCurve: Curves.fastOutSlowIn,
-            enableInfiniteScroll: true,
-            autoPlayAnimationDuration: Duration(milliseconds: 800),
-            viewportFraction: 0.8,
-          ),
-          items: [
-            Image.asset('assets/iimage1.png'),
-            Image.asset('assets/iimage2.png'),
-            Image.asset('assets/iimage3.png'),
-            Image.asset('assets/image4.png'),
-            Image.asset('assets/image5.png'),
-            Image.asset('assets/image6.png'),
-          ],
-        ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.end,
-              children: <Widget>[
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return Colors.orangeAccent;
-                      }
-                      return Colors.lightGreenAccent;
-                    }),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                      EdgeInsets.symmetric(horizontal: 80, vertical: 30),
-                    ),
-                    textStyle: MaterialStateProperty.all<TextStyle>(
-                      TextStyle(
-                        fontSize: 29,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                    ),
+            Text(
+              'Want To Share Food?',
+              textAlign: TextAlign.end,
+              style: TextStyle(
+                fontFamily: 'SimpleSans',
+                fontSize: 30.0,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            SizedBox(height: 20.0),
+            Text(
+              'Choose any one',
+              style: TextStyle(
+                fontFamily: 'Schyler',
+                fontSize: 12.0,
+              ),
+            ),
+            SizedBox(height: 78.0),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Container(
+                  width: 150.0,
+                  height: 100.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.orange,
                   ),
-                  onPressed: () {
-                    Navigator.of(context).push(_createRoute());
-                  },
-        child: Text(
-          'DONATOR',
-          style: TextStyle(
-            fontFamily: 'Braah',
-            color: Colors.green,
-          ),
-                ),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  style: ButtonStyle(
-                    backgroundColor: MaterialStateProperty.resolveWith((states) {
-                      if (states.contains(MaterialState.pressed)) {
-                        return Colors.tealAccent;
-                      }
-                      return Colors.yellow;
-                    }),
-                    padding: MaterialStateProperty.all<EdgeInsets>(
-                      EdgeInsets.symmetric(horizontal: 95, vertical: 30),
-                    ),
-                    textStyle: MaterialStateProperty.all<TextStyle>(
-                      TextStyle(
-                        fontSize: 29,
-                        fontFamily: 'Braah',
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                      RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30.0),
-                      ),
-                    ),
-                  ),
-                  onPressed: () {
-                    Navigator.of(context).push(_createRoutec());                  },
-                  child: Text(
-                    'SEEKER',
-                    style: TextStyle(
-                      color: Colors.red,
-                    ),
-                  ),
-                ),
-                SizedBox(height: 50,),
-                ElevatedButton(
-                  onPressed: () {
-                    Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => SignInScreen()));
-                  },
-                  child: Text(
-                    'LOGOUT',
-                    style: const TextStyle(
-                        color: Colors.black87, fontWeight: FontWeight.bold, fontSize: 16 ),
-                  ),
+                  child: IconButton(
+                    icon: Image.asset('assets/heart.png'),
+                    color: Colors.white,
+                    onPressed: () {
+                      Navigator.of(context).push(_createRoute());
 
-                  style: ButtonStyle(
-                      backgroundColor: MaterialStateProperty.resolveWith((states) {
-                        if (states.contains(MaterialState.pressed)) {
-                          return Colors.black;
-                        }
-                        return Colors.redAccent;
-                      }),
-                      shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                          RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)))),
+                    },
+                  ),
+                ),
+                SizedBox(width: 16.0),
+                Container(
+                  width: 140.0,
+                  height: 100.0,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    color: Colors.orangeAccent,
+                  ),
+                  child: IconButton(
+                    icon: Image.asset('assets/search.png'),
+                    onPressed: () {
+                      Navigator.of(context).push(_createRoutec());
+
+                    },
+                  ),
                 ),
               ],
             ),
-          ),
-        ]),
+            SizedBox(height: 10),
+            Expanded(
+              child: Image.asset(
+                'assets/barb.png',
+                fit: BoxFit.fitWidth,
+                alignment: Alignment.bottomCenter,
+                width: 300,
+                height: 50,
+              ),
+            ),
+            SizedBox(
+              height: 1,
+            ),
+            Container(
+              width: 70.0,
+              height: 70.0,
+              child: IconButton(
+                icon: Icon(Icons.exit_to_app_sharp),
+                color: Colors.black,
+                onPressed: () {
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => SignInScreen(),
+                    ),
+                  );
+
+
+                },
+              ),
+            ),
+          ],
         ),
       ),
     );
   }
 }
+
 Route _createRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const MyApp(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-
       const begin = Offset(1.4, 0.1);
       const end = Offset.zero;
       final tween = Tween(begin: begin, end: end);
@@ -167,11 +128,11 @@ Route _createRoute() {
     },
   );
 }
+
 Route _createRoutec() {
   return PageRouteBuilder(
-    pageBuilder: (context, animation, secondaryAnimation) =>  ItemsScreen(),
+    pageBuilder: (context, animation, secondaryAnimation) => ItemsScreen(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-
       const begin = Offset(1.4, 0.1);
       const end = Offset.zero;
       final tween = Tween(begin: begin, end: end);
