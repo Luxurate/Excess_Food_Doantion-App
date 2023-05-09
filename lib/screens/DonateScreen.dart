@@ -13,6 +13,10 @@ import 'package:path/path.dart';
 import 'opening_screen.dart';
 import '../common/theme_helper.dart';
 import '';
+import 'package:geocoding/geocoding.dart';
+import 'package:geolocator/geolocator.dart';
+
+
 void main() {
   runApp(const MyApp());
 }
@@ -169,6 +173,41 @@ class _UploadingImageToFirebaseStorageState
 
 
   @override
+
+  String  _currentLocation ='';
+  void initState() {
+    super.initState();
+    _getCurrentLocation();
+  }
+
+  Future<void> _getCurrentLocation() async {
+    try {
+      Position position = await Geolocator.getCurrentPosition();
+      List<Placemark> placemarks =
+      await placemarkFromCoordinates(position.latitude, position.longitude);
+      Placemark placemark = placemarks[0];
+      setState(() {
+        _currentLocation =
+        '${placemark.thoroughfare},${placemark.subThoroughfare},${placemark.street},${placemark.name},${placemark.subLocality},${placemark.locality},${placemark.postalCode}, ${placemark.administrativeArea}, ${placemark.country}';
+      });
+    } catch (e) {
+      print('Error getting location: $e');
+      setState(() {
+        _currentLocation = 'Error getting location';
+      });
+    }
+  }
+  void _uploadLocation() async {
+    try {
+      await FirebaseFirestore.instance
+          .collection('items')
+          .add({'address': _currentLocation});
+      print('Location uploaded successfully');
+    } catch (e) {
+      print('Error uploading location: $e');
+    }
+  }
+
   final _itemNameController = TextEditingController();
   final _quantityController = TextEditingController();
   final _phoneController = TextEditingController();
@@ -177,7 +216,7 @@ class _UploadingImageToFirebaseStorageState
   final _userNameController = TextEditingController();
 
 
-
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -192,7 +231,9 @@ class _UploadingImageToFirebaseStorageState
             fontFamily: 'Schyler',
           ),
         ),
+
       ),
+
       body: SingleChildScrollView(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -250,10 +291,13 @@ class _UploadingImageToFirebaseStorageState
 
     SizedBox(height: 16),
             TextField(
-              controller: _addressController,
+
               decoration: ThemeHelper().textInputDecoration(
                 'Address',
+
               ),
+              controller: TextEditingController(text: _currentLocation),
+              readOnly: true,
             ),
             SizedBox(height: 16),
             GestureDetector(
@@ -369,9 +413,10 @@ class _UploadingImageToFirebaseStorageState
                   _itemNameController.text,
                   int.parse(_quantityController.text),
                   int.parse(_phoneController.text),
-                  _addressController.text,
+                  _addressController.text = _currentLocation,
                   _timeController.text,
                 );
+
               },
               child: Text(
                 'Donate / Upload',

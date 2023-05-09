@@ -70,6 +70,10 @@ dependencies:
   url_launcher: ^6.1.10
   flutter_phone_direct_caller: ^2.1.1
   google_maps: ^6.2.0
+  geolocator: ^9.0.2
+  geocoding: ^2.1.0
+  location: ^4.4.0
+  liquid_pull_to_refresh: ^3.0.1
 
 
 

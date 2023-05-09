@@ -43,11 +43,11 @@ class _ItemsScreenState extends State<ItemsScreen> {
         backgroundColor: Colors.amber,
         elevation: 2,
         title: Text(
-          'DONATISTIC',
+          'SEEK FOOD',
           style: TextStyle(
             color: Colors.black,
-            fontFamily: 'Schyler',
-            fontSize: 25,
+            fontFamily: 'SimpleSans',
+            fontSize: 20,
           ),
         ),
         actions: <Widget>[
@@ -156,7 +156,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 style: TextStyle(
                 fontSize: 14,
                 color: Colors.red,
-                fontFamily: 'Schyler',
+                fontFamily: 'SimpleSans',
                 ),
                 ),
                 ),
@@ -173,9 +173,9 @@ class _ItemsScreenState extends State<ItemsScreen> {
                           child: Text(
                             ' ${data['itemName']}',
                             style: TextStyle(
-                              fontSize: 20,
+                              fontSize: 15,
                               color: Colors.black,
-                              fontFamily: 'JoseBold',
+                              fontFamily: 'SimpleSans',
                             ),
                           ),
                         ),
@@ -604,14 +604,14 @@ class _DonatedpageState extends State<Donatedpage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.amber,
         elevation: 2,
         title: Text(
           'YOUR DONATIONS',
           style: TextStyle(
-            color: Colors.deepOrangeAccent,
-            fontFamily: 'Schyler',
-            fontSize: 25,
+            color: Colors.black,
+            fontFamily: 'SimpleSans',
+            fontSize: 20,
           ),
         ),
 
@@ -702,13 +702,13 @@ class _DonatedpageState extends State<Donatedpage> {
                                     style: TextStyle(
                                       fontSize: 14,
                                       color: Colors.red,
-                                      fontFamily: 'Schyler',
+                                      fontFamily: 'SimpleSans',
                                     ),
                                   ),
                                 ),
                               ),
                               Positioned(
-                                top: 156,
+                                top: 146,
                                 left: 8,
                                 child: Container(
                                   decoration: BoxDecoration(
@@ -720,9 +720,9 @@ class _DonatedpageState extends State<Donatedpage> {
                                   child: Text(
                                     ' ${data['itemName']}',
                                     style: TextStyle(
-                                      fontSize: 20,
+                                      fontSize: 15,
                                       color: Colors.black,
-                                      fontFamily: 'JoseBold',
+                                      fontFamily: 'SimpleSans',
                                     ),
                                   ),
                                 ),

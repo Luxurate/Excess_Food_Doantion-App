@@ -1,4 +1,6 @@
 import 'dart:io';
+import 'package:fluttertoast/fluttertoast.dart';
+
 import 'signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddonation/reusable_widgets/reusable_widget.dart';
@@ -12,6 +14,7 @@ class OpeningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'My App',
       home: Scaffold(
         backgroundColor: Colors.white,
@@ -47,13 +50,22 @@ class OpeningScreen extends StatelessWidget {
                   height: 100.0,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.orange,
+                    color: Colors.amber,
                   ),
                   child: IconButton(
                     icon: Image.asset('assets/heart.png'),
                     color: Colors.white,
                     onPressed: () {
                       Navigator.of(context).push(_createRoute());
+                      Fluttertoast.showToast(
+                        msg: "Fetching Your Location..........",
+                        toastLength: Toast.LENGTH_SHORT,
+                        gravity: ToastGravity.BOTTOM,
+                        timeInSecForIosWeb: 5,
+                        backgroundColor: Colors.amber,
+                        textColor: Colors.black,
+                        fontSize: 20.0,
+                      );
 
                     },
                   ),
@@ -64,7 +76,7 @@ class OpeningScreen extends StatelessWidget {
                   height: 100.0,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
-                    color: Colors.orangeAccent,
+                    color: Colors.amber,
                   ),
                   child: IconButton(
                     icon: Image.asset('assets/search.png'),
