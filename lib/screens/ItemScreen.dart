@@ -250,7 +250,15 @@ class _ItemsScreenState extends State<ItemsScreen> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: Text('Do you want to Book this Item?'),
+
+                                        title: Text('Do you want to Book this Item?',
+                                          style: TextStyle(
+                                            fontSize: 15,
+                                            fontFamily: 'SimpleSans',
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+
                                         actions: <Widget>[
 
                                           TextButton(
@@ -262,6 +270,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                                           TextButton(
                                             child: Text('Yes'),
                                             onPressed: () {
+
                                               Navigator.of(context).pop(true);
                                             },
                                           ),
@@ -368,10 +377,10 @@ void _handImage(String docId) async {
   } else {
     print('This is not Your Item!!');
     Fluttertoast.showToast(
-        msg: "This is not Your Item!!",
+        msg: "Please Call the Donator to Book this Item!!",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
+        timeInSecForIosWeb: 10,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -607,7 +616,7 @@ class _DonatedpageState extends State<Donatedpage> {
         backgroundColor: Colors.amber,
         elevation: 2,
         title: Text(
-          'YOUR DONATIONS',
+          ' Booked / Donated ',
           style: TextStyle(
             color: Colors.black,
             fontFamily: 'SimpleSans',
