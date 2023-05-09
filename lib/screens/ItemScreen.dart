@@ -326,7 +326,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
           gravity: ToastGravity.BOTTOM,
           timeInSecForIosWeb: 1,
           backgroundColor: Colors.lightGreenAccent,
-          textColor: Colors.white,
+          textColor: Colors.black,
           fontSize: 16.0);
     } else {
       print('Current user does not have permission to delete this item.');
