@@ -40,12 +40,12 @@ class _ItemsScreenState extends State<ItemsScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.black,
+        backgroundColor: Colors.amber,
         elevation: 2,
         title: Text(
           'DONATISTIC',
           style: TextStyle(
-            color: Colors.deepOrangeAccent,
+            color: Colors.black,
             fontFamily: 'Schyler',
             fontSize: 25,
           ),
@@ -250,7 +250,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-                                        title: Text('Have you donated?'),
+                                        title: Text('Do you want to Book this Item?'),
                                         actions: <Widget>[
 
                                           TextButton(
@@ -526,20 +526,44 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
                 ),
               ),
               child: Center(
-                child: IconButton(
+                child: ElevatedButton.icon(
                   icon: Icon(Icons.call),
-                  color: Colors.greenAccent,
+                  label: Text(''),
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.black,
+                    minimumSize: Size.zero,
+                  ),
                   onPressed: () async {
                     final phone = widget.data['phone'].toString();
-                    print(phone);
-                    final result = await FlutterPhoneDirectCaller.callNumber(phone);
-                    if (!result!) {
-                      ScaffoldMessenger.of(context).showSnackBar(SnackBar(
-                        content: Text('Failed to make phone call.'),
-                      ));
+                    final confirm = await showDialog(
+                      context: context,
+                      builder: (context) => AlertDialog(
+                        title: Text('Confirm Phone Call'),
+                        content: Text('Are you sure you want to call $phone?'),
+                        actions: [
+                          TextButton(
+                            child: Text('Cancel'),
+                            onPressed: () => Navigator.of(context).pop(false),
+                          ),
+                          TextButton(
+                            child: Text('Call'),
+                            onPressed: () => Navigator.of(context).pop(true),
+                          ),
+                        ],
+                      ),
+                    );
+                    if (confirm == true) {
+                      final result = await FlutterPhoneDirectCaller.callNumber(phone);
+                      if (!result!) {
+                        ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                          content: Text('Failed to make phone call.'),
+                        ));
+                      }
                     }
                   },
                 ),
+
+
 
               ),
             ),
