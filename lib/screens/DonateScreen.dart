@@ -86,16 +86,30 @@ class _UploadingImageToFirebaseStorageState
     }
 
     // Show loading indicator
-    final progress = LinearProgressIndicator();
+    final loadingGif = Image.asset(
+      'assets/loadingif.gif',
+      width: 1000.0,
+      height: 1000.0,
+    );
+
     showDialog(
       context: context,
       barrierDismissible: false,
       builder: (BuildContext context) {
-        return Center(
-          child: progress,
+        return Stack(
+          children: [
+            Container(
+              color: Colors.black, // set the background color to black with 70% opacity
+            ),
+            Center(
+              child: loadingGif,
+            ),
+          ],
         );
       },
     );
+
+
 
     try {
       String fileName = basename(_image!.path);
