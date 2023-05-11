@@ -8,7 +8,7 @@ class ThemeHelper{
     return InputDecoration(
       labelText: lableText,
       hintText: hintText,
-      fillColor: Colors.white,
+      fillColor: Colors.white70,
       filled: true,
       contentPadding: EdgeInsets.fromLTRB(20, 10, 20, 10),
       focusedBorder: OutlineInputBorder(borderRadius: BorderRadius.circular(100.0), borderSide: BorderSide(color: Colors.grey)),
@@ -64,8 +64,8 @@ class ThemeHelper{
         ),
       ),
       minimumSize: MaterialStateProperty.all(Size(50, 50)),
-      backgroundColor: MaterialStateProperty.all(Colors.deepOrangeAccent),
-      shadowColor: MaterialStateProperty.all(Colors.transparent),
+      backgroundColor: MaterialStateProperty.all(Colors.amber),
+      shadowColor: MaterialStateProperty.all(Colors.black),
     );
   }
 
@@ -77,7 +77,7 @@ class ThemeHelper{
         TextButton(
           child: Text(
             "OK",
-            style: TextStyle(color: Colors.deepOrange),
+            style: TextStyle(color: Colors.amber),
           ),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.black38)),

@@ -225,10 +225,10 @@ class _UploadingImageToFirebaseStorageState
         title: Text(
           'Donation Poll',
           style: TextStyle(
-            fontSize: 24,
+            fontSize: 21,
             fontWeight: FontWeight.bold,
             color: Colors.black,
-            fontFamily: 'Schyler',
+            fontFamily: 'SimpleSans',
           ),
         ),
 
@@ -271,6 +271,7 @@ class _UploadingImageToFirebaseStorageState
               keyboardType: TextInputType.number,
               decoration: ThemeHelper().textInputDecoration(
                 'Quantity',
+
               ),
               inputFormatters: [
                 FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
@@ -295,9 +296,10 @@ class _UploadingImageToFirebaseStorageState
               decoration: ThemeHelper().textInputDecoration(
                 'Address',
 
+
               ),
               controller: TextEditingController(text: _currentLocation),
-              readOnly: true,
+              readOnly: false,
             ),
             SizedBox(height: 16),
             GestureDetector(
@@ -363,7 +365,7 @@ class _UploadingImageToFirebaseStorageState
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black,
-                                    fontFamily: 'Schyler',
+                                    fontFamily: 'SimpleSans',
                                   ),
                                 ),
                                 onTap: () {
@@ -378,7 +380,7 @@ class _UploadingImageToFirebaseStorageState
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black,
-                                    fontFamily: 'Schyler',
+                                    fontFamily: 'SimpleSans',
                                   ),
                                 ),
                                 onTap: () {
@@ -400,6 +402,7 @@ class _UploadingImageToFirebaseStorageState
             ),
             ElevatedButton(
               style: ThemeHelper().buttonStyle(),
+
               onPressed: () {
                 if (_image == null) {
                   ScaffoldMessenger.of(context).showSnackBar(
@@ -407,6 +410,7 @@ class _UploadingImageToFirebaseStorageState
                   );
                   return;
                 }
+
                 uploadImageToFirebase(
                   context,
                   _userNameController.text,
@@ -419,12 +423,12 @@ class _UploadingImageToFirebaseStorageState
 
               },
               child: Text(
-                'Donate / Upload',
+                '        Upload        ',
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,
-                  color: Colors.white,
-                  fontFamily: 'Schyler',
+                  color: Colors.black,
+                  fontFamily: 'SimpleSans',
                 ),
               ),
             ),

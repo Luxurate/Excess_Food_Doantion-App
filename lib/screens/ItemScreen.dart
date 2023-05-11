@@ -103,7 +103,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                   },
                   child: Container(
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(11),
+                      borderRadius: BorderRadius.circular(18),
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
@@ -116,7 +116,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                       // Added edge insets
                       border: Border.all(
                         color: Colors.black,
-                        width: 2,
+                        width: 3,
                       ),
                     ),
 
@@ -128,10 +128,10 @@ class _ItemsScreenState extends State<ItemsScreen> {
                           child: Stack(
                     children: [
                       ClipRRect(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(0)
-                        , bottom: Radius.circular(9)),
+                        borderRadius: BorderRadius.vertical(top: Radius.circular(14)
+                        , bottom: Radius.circular(15)),
                         child: Padding(
-                          padding: EdgeInsets.only(top: 4),
+                          padding: EdgeInsets.only(top: 0),
 
                           child: Image.network(
                             data['imageUrl'],
@@ -450,8 +450,8 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             borderRadius: BorderRadius.circular(16),
             child: Image.network(
               widget.data['imageUrl'],
-              width: 412,
-              height: 330,
+              width: 600,
+              height: 450,
               fit: BoxFit.fill,
 
             ),

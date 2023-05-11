@@ -1,0 +1,15 @@
+flutter_native_splash:
+  image: assets/example.gif
+  image_dark: assets/example.gif
+  color: "#ffffff"
+  android: true
+  ios: true
+  fill: true
+  # The following values are optional
+  # logo: assets/logo.png
+  # logo_dark: assets/logo_dark.png
+  # logo_grey: assets/logo_grey.png
+  # logo_grey_dark: assets/logo_grey_dark.png
+  # background_image: assets/background.png
+  # background_image_dark: assets/background_dark.png
+  # background_image_mode: scaleAspectFit

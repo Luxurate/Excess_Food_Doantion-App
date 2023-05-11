@@ -91,7 +91,7 @@ class OpeningScreen extends StatelessWidget {
             SizedBox(height: 10),
             Expanded(
               child: Image.asset(
-                'assets/barb.png',
+                'assets/barb1.png',
                 fit: BoxFit.fitWidth,
                 alignment: Alignment.bottomCenter,
                 width: 300,

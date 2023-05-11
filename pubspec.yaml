@@ -74,6 +74,11 @@ dependencies:
   geocoding: ^2.1.0
   location: ^4.4.0
   liquid_pull_to_refresh: ^3.0.1
+  flutter_spinkit: ^5.2.0
+  another_flutter_splash_screen: ^1.1.4
+  flutter_splash_screen: ^1.0.0+6
+  flutter_native_splash: ^2.2.19
+
 
 
 

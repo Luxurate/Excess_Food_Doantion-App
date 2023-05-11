@@ -1,43 +1,54 @@
-import 'package:firebase_auth/firebase_auth.dart';
+import 'dart:async';
 import 'package:flutter/material.dart';
-import 'screens/opening_screen.dart';
+import 'package:cached_network_image/cached_network_image.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:fooddonation/screens/signin_screen.dart';
 
-
-
-import 'screens/signin_screen.dart';
-class SplashPage extends StatefulWidget {
-  const SplashPage({super.key});
-
+class SplashScreen extends StatefulWidget {
   @override
-  State<SplashPage> createState() => _SplashPageState();
+  _SplashScreenState createState() => _SplashScreenState();
 }
 
-class _SplashPageState extends State<SplashPage> {
-  final auth = FirebaseAuth.instance;
+class _SplashScreenState extends State<SplashScreen> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 7), () {
+      // Navigate to the home screen after 3 seconds
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (BuildContext context) => SignInScreen()),
+      );
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
-    //show screen for 2 secs
-    Future.delayed(const Duration(seconds: 2), () {
-      //if user is authenticated then move to AuthPage else move to MainActivityPage
-      if (auth.currentUser == null) {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) => const SignInScreen()),
-        );
-      } else {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (_) =>  OpeningScreen()),
-        );
-      }
-
-    });
-
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Center(
-          child: FlutterLogo(
-            size: 100,
-          )),
+        child: CachedNetworkImage(
+          imageUrl: 'https://media.tenor.com/-E25PiqG8FkAAAAC/upload-loading.gif',
+          placeholder: (context, url) => SpinKitDoubleBounce(
+            color: Colors.blue,
+            size: 50.0,
+          ),
+          errorWidget: (context, url, error) => Icon(Icons.error),
+        ),
+      ),
+    );
+  }
+}
+
+class HomeScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('Home Screen'),
+      ),
+      body: Center(
+        child: Text('Welcome to the Home Screen!'),
+      ),
     );
   }
 }
