@@ -43,7 +43,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
         backgroundColor: Colors.amber,
         elevation: 2,
         title: Text(
-          'SEEK FOOD',
+          'What Do You Seek?',
           style: TextStyle(
             color: Colors.black,
             fontFamily: 'SimpleSans',
@@ -82,7 +82,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 2,
                 crossAxisSpacing: 8,
-                mainAxisSpacing: 8,
+                mainAxisSpacing: 9,
                 childAspectRatio:0.5,
               ),
               itemCount: snapshot.data!.docs.length,
@@ -97,7 +97,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                         child: ItemDetailScreen(data),
                         type: PageTransitionType.theme,
                         alignment: Alignment.bottomCenter,
-                        duration: Duration(milliseconds: 900),
+                        duration: Duration(milliseconds: 1000),
                       ),
                     );
                   },
@@ -107,16 +107,16 @@ class _ItemsScreenState extends State<ItemsScreen> {
                       color: Colors.white,
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.grey.withOpacity(0.7),
+                          color: Colors.white.withOpacity(0.7),
                           spreadRadius: 3,
-                          blurRadius: 10,
-                          offset: Offset(0, 9),
+                          blurRadius: 30,
+                          offset: Offset(5, 11),
                         ),
                       ],
                       // Added edge insets
                       border: Border.all(
-                        color: Colors.black,
-                        width: 3,
+                        color: Colors.amber,
+                        width: 4,
                       ),
                     ),
 
@@ -394,7 +394,7 @@ void _showInformation(String docId) async {
   final doc = await FirebaseFirestore.instance.collection('items').doc(docId).get();
   final username = doc['username'];
   Fluttertoast.showToast(
-    msg: "Uploaded by: $username",
+    msg: "Donated by: $username",
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,
@@ -446,14 +446,22 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          ClipRRect(
-            borderRadius: BorderRadius.circular(16),
-            child: Image.network(
-              widget.data['imageUrl'],
-              width: 600,
-              height: 450,
-              fit: BoxFit.fill,
-
+          Container(
+            decoration: BoxDecoration(
+              borderRadius: BorderRadius.circular(20),
+              border: Border.all(
+                color: Colors.amber,
+                width: 3,
+              ),
+            ),
+            child: ClipRRect(
+              borderRadius: BorderRadius.circular(17),
+              child: Image.network(
+                widget.data['imageUrl'],
+                width: 600,
+                height: 450,
+                fit: BoxFit.fill,
+              ),
             ),
           ),
           SizedBox(height: 1),

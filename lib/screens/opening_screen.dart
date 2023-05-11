@@ -37,6 +37,7 @@ class OpeningScreen extends StatelessWidget {
             Text(
               'Choose any one',
               style: TextStyle(
+                color: Colors.grey,
                 fontFamily: 'Schyler',
                 fontSize: 12.0,
               ),

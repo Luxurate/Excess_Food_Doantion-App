@@ -18,7 +18,7 @@ class _SplashScreenState extends State<SplashScreen> {
   void initState() {
     super.initState();
     Timer(Duration(seconds: 5), () {
-      // Navigate to the home screen after 3 seconds
+
       FirebaseAuth.instance.authStateChanges().listen((user) {
         if (user != null) {
           Navigator.pushReplacement(
