@@ -284,17 +284,9 @@ class _ItemsScreenState extends State<ItemsScreen> {
                                   }
                                 },
                               ),
-
-
-
-
-
                             ],
                           ),
                         ),
-
-
-
                       ],
                     ),
                   ),
@@ -425,12 +417,8 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
 
   String? get itemId => null;
 
-
-
   @override
   Widget build(BuildContext context) {
-    String docId = "";
-    int quantity = widget.data['quantity'];
     return Scaffold(
       backgroundColor: Colors.white,
 
@@ -447,71 +435,6 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             color: Colors.white,
           ),
         ),
-        actions: [
-          IconButton(
-            icon: Icon(Icons.edit),
-            onPressed: () {
-              showDialog(
-                context: context,
-                builder: (context) {
-                  String docId = ""; // Initialize with empty string
-                  int quantity = widget.data['quantity'];
-
-                  firestore
-                      .collection('items')
-                      .where('quantity', isEqualTo: widget.data['quantity']) // Replace with the appropriate field name and value to identify the document
-                      .get()
-                      .then((QuerySnapshot querySnapshot) {
-                    if (querySnapshot.docs.isNotEmpty) {
-                      docId = querySnapshot.docs.first.id;
-                    }
-                  })
-                      .catchError((error) {
-                    print('Error retrieving document: $error');
-                  });
-
-                  return AlertDialog(
-                    title: Text('Edit Quantity'),
-                    content: TextField(
-                      keyboardType: TextInputType.number,
-                      onChanged: (value) {
-                        quantity = int.tryParse(value) ?? quantity;
-                      },
-                    ),
-                    actions: [
-                      TextButton(
-                        child: Text('Cancel'),
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                      ),
-                      TextButton(
-                        child: Text('Save'),
-                        onPressed: () async {
-                          if (docId.isNotEmpty) {
-                            // Save the updated quantity to Firestore
-                            await firestore
-                                .collection('items')
-                                .doc(docId)
-                                .update({'quantity': quantity});
-                          }
-
-                          Navigator.push(
-                              context,
-                              MaterialPageRoute(builder: (context) => ItemsScreen()),
-                          );
-
-                        },
-                      ),
-                    ],
-                  );
-                },
-              );
-            },
-          ),
-
-
-        ],
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -542,14 +465,13 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             ),
             padding: EdgeInsets.symmetric(vertical: 12, horizontal: 20),
             child: Text(
-              'Quantity: $quantity',
+              'Quantity: ${widget.data['quantity']}',
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.black,
                 fontFamily: 'JoseBold',
               ),
             ),
-
           ),
           SizedBox(height: 1),
           Container(
