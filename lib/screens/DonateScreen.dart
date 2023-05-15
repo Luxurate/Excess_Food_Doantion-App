@@ -375,7 +375,7 @@ class _UploadingImageToFirebaseStorageState
                                 leading: Icon(Icons.camera),
 
                                 title: Text(
-                                  'Take A Picture...',
+                                  'Take A Picture From Camera...',
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black,
