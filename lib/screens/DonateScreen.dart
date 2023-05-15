@@ -216,7 +216,7 @@ class _UploadingImageToFirebaseStorageState
       await FirebaseFirestore.instance
           .collection('items')
           .add({'address': _currentLocation});
-      print('Location uploaded successfully');
+      print('Location Has Been Uploaded');
     } catch (e) {
       print('Error uploading location: $e');
     }
