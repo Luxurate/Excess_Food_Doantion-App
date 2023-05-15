@@ -237,7 +237,7 @@ class _UploadingImageToFirebaseStorageState
       appBar: AppBar(
         backgroundColor: Colors.amber,
         title: Text(
-          'Donation Poll',
+          'Donation Screen',
           style: TextStyle(
             fontSize: 21,
             fontWeight: FontWeight.bold,
