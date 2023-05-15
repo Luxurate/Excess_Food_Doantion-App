@@ -390,7 +390,7 @@ class _UploadingImageToFirebaseStorageState
                               ListTile(
                                 leading: Icon(Icons.photo_library),
                                 title: Text(
-                                  'Choose From Gallery...',
+                                  'Choose Image From Gallery...',
                                   style: TextStyle(
                                     fontSize: 14,
                                     color: Colors.black,
