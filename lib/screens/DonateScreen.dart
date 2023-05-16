@@ -276,7 +276,7 @@ class _UploadingImageToFirebaseStorageState
             TextField(
               controller: _itemNameController,
               decoration: ThemeHelper().textInputDecoration(
-                'Item Name',
+                'Food Item Name',
               ),
             ),
             SizedBox(height: 16),
