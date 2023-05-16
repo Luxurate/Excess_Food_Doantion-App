@@ -46,7 +46,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 reusableTextField(
-                  "Enter Email Id",
+                  "Enter Your Email Id",
                   Icons.person_outline,
                   false,
                   _emailTextController,
