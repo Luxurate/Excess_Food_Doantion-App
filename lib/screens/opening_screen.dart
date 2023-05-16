@@ -59,7 +59,7 @@ class OpeningScreen extends StatelessWidget {
                     onPressed: () {
                       Navigator.of(context).push(_createRoute());
                       Fluttertoast.showToast(
-                        msg: "Fetching Your Location..........",
+                        msg: "Location will be Fetched...",
                         toastLength: Toast.LENGTH_SHORT,
                         gravity: ToastGravity.BOTTOM,
                         timeInSecForIosWeb: 5,
