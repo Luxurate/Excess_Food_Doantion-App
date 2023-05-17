@@ -65,7 +65,7 @@ class OpeningScreen extends StatelessWidget {
                         timeInSecForIosWeb: 5,
                         backgroundColor: Colors.amber,
                         textColor: Colors.black,
-                        fontSize: 20.0,
+                        fontSize: 19.0,
                       );
 
                     },
