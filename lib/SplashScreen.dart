@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
           imageUrl: 'https://media.giphy.com/media/ES4Vcv8zWfIt2/giphy.gif',
           placeholder: (context, url) => SpinKitDoubleBounce(
             color: Colors.blue,
-            size: 50.0,
+            size: 51.0,
           ),
           errorWidget: (context, url, error) => Icon(Icons.error),
         ),
