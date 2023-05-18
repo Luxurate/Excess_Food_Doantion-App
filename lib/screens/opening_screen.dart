@@ -15,7 +15,7 @@ class OpeningScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My App',
+      title: 'Myss App',
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Column(
