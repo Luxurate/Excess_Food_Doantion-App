@@ -296,7 +296,7 @@ class _UploadingImageToFirebaseStorageState
     TextField(
     controller: _phoneController,
     keyboardType: TextInputType.phone,
-    decoration: ThemeHelper().textInputDecoration('Phone Number'),
+    decoration: ThemeHelper().textInputDecoration('Contact Number'),
     inputFormatters: [
     FilteringTextInputFormatter.allow(RegExp(r'[0-9]')),
     LengthLimitingTextInputFormatter(10),
