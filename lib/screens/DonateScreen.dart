@@ -352,7 +352,7 @@ class _UploadingImageToFirebaseStorageState
               child: AbsorbPointer(
                 child: TextField(
                   controller: _timeController,
-                  decoration: ThemeHelper().textInputDecoration('Pickup Date and Time'),
+                  decoration: ThemeHelper().textInputDecoration('Pickup => Date and Time'),
                 ),
               ),
             ),
