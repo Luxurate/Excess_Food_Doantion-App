@@ -55,7 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   height: 20,
                 ),
                 reusableTextField(
-                  "Enter Password",
+                  "Enter Your Password",
                   Icons.lock_outlined,
                   true,
                   _passwordTextController,
