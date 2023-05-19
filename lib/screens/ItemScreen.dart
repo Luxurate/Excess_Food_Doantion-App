@@ -71,7 +71,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
           stream: FirebaseFirestore.instance.collection('items').snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text('Something went wrong');
+              return Text('Something has gone wrong');
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
