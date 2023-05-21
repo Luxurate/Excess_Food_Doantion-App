@@ -21,7 +21,7 @@ class _ResetPasswordState extends State<ResetPassword> {
         backgroundColor: Colors.transparent,
         elevation: 0,
         title: const Text(
-          "Reset Password",
+          "Reset 123123123123123123Password",
           style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
         ),
       ),
