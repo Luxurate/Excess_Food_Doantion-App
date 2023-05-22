@@ -20,20 +20,21 @@ class _OpeningScreenState extends State<OpeningScreen> {
   double searchButtonSize = 100.0;
 
   void _onHeartButtonPressed() {
-    Future.delayed(Duration(milliseconds: 100), () {
+    Future.delayed(const Duration(milliseconds: 100), () {
     setState(() {
       heartButtonSize = 100.0;
       searchButtonSize = 10.0;
     });
 
-    Future.delayed(Duration(milliseconds: 360), () {
+    Future.delayed(const Duration(milliseconds: 360), () {
+      Navigator.of(context).push(_createRoute());
       setState(() {
         heartButtonSize = 100.0;
         searchButtonSize = 100.0;
       });
 
       // Perform navigation here
-      Navigator.of(context).push(_createRoute());
+
       Fluttertoast.showToast(
         msg: "Location will be Fetched...",
         toastLength: Toast.LENGTH_SHORT,
@@ -48,22 +49,26 @@ class _OpeningScreenState extends State<OpeningScreen> {
   }
 
   void _onSearchButtonPressed() {
-    Future.delayed(Duration(milliseconds: 100), () {
+
     setState(() {
       searchButtonSize = 100.0;
-      heartButtonSize = 10.0; // Set the size of the other icon to be smaller
+      heartButtonSize = 10.0;
+      // Set the size of the other icon to be smaller
     });
 
-    Future.delayed(Duration(milliseconds: 360), () {
+    Future.delayed(const Duration(milliseconds: 360), () {
+      Navigator.of(context).push(_createRoutec());
       setState(() {
         searchButtonSize = 100.0;
         heartButtonSize = 100.0;
       });
 
+
       // Perform navigation here
-      Navigator.of(context).push(_createRoutec());
+
     });
-    });
+
+
   }
 
 
@@ -77,10 +82,10 @@ class _OpeningScreenState extends State<OpeningScreen> {
         body: Column(
           mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            SizedBox(
+            const SizedBox(
               height: 200,
             ),
-            Text(
+            const Text(
               'Want To Share Food?',
               textAlign: TextAlign.end,
               style: TextStyle(
@@ -89,8 +94,8 @@ class _OpeningScreenState extends State<OpeningScreen> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20.0),
-            Text(
+            const SizedBox(height: 20.0),
+            const Text(
               'Choose any one',
               style: TextStyle(
                 color: Colors.grey,
@@ -98,15 +103,15 @@ class _OpeningScreenState extends State<OpeningScreen> {
                 fontSize: 12.0,
               ),
             ),
-            SizedBox(height: 88.0),
+            const SizedBox(height: 88.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 AnimatedContainer(
-                  duration: Duration(milliseconds: 200),
+                  duration: const Duration(milliseconds: 200),
                   width: heartButtonSize,
                   height: heartButtonSize,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.amber,
                   ),
@@ -119,12 +124,12 @@ class _OpeningScreenState extends State<OpeningScreen> {
                     ),
                   ),
                 ),
-                SizedBox(width: 49.0),
+                const SizedBox(width: 49.0),
                 AnimatedContainer(
-                  duration: Duration(milliseconds: 200),
+                  duration: const Duration(milliseconds: 200),
                   width: searchButtonSize,
                   height: searchButtonSize,
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.amber,
                   ),
@@ -138,7 +143,7 @@ class _OpeningScreenState extends State<OpeningScreen> {
                 ),
               ],
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Expanded(
               child: Image.asset(
                 'assets/barb1.png',
@@ -148,19 +153,19 @@ class _OpeningScreenState extends State<OpeningScreen> {
                 height: 50,
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 1,
             ),
             Container(
               width: 70.0,
               height: 70.0,
               child: IconButton(
-                icon: Icon(Icons.exit_to_app_sharp),
+                icon: const Icon(Icons.exit_to_app_sharp),
                 color: Colors.black,
                 onPressed: () {
                   Navigator.of(context).push(
                     MaterialPageRoute(
-                      builder: (context) => SignInScreen(),
+                      builder: (context) => const SignInScreen(),
                     ),
                   );
                 },
@@ -184,7 +189,7 @@ Route _createRoute() {
         child: child,
       );
     },
-    transitionDuration: Duration(milliseconds: 700),
+    transitionDuration: const Duration(milliseconds: 700),
   );
 }
 
@@ -199,7 +204,7 @@ Route _createRoutec() {
         child: child,
       );
     },
-    transitionDuration: Duration(milliseconds: 700),
+    transitionDuration: const Duration(milliseconds: 700),
   );
 }
 
