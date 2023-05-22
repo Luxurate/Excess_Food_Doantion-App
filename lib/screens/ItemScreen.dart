@@ -197,7 +197,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                           ),
                         ),
                         Container(
-                          padding: const EdgeInsets.only(left: 100,right: 8, top: 0, bottom: 0),
+                          padding: const EdgeInsets.only(left: 98,right: 8, top: 0, bottom: 0),
                           child: Row(
                             children: [
                               IconButton(
