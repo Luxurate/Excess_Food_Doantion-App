@@ -80,10 +80,10 @@ class _ItemsScreenState extends State<ItemsScreen> {
 
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2,
-                crossAxisSpacing: 8,
+                crossAxisCount: 1,
+                crossAxisSpacing: 2,
                 mainAxisSpacing: 9,
-                childAspectRatio:0.5,
+                childAspectRatio:1.5,
               ),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
@@ -143,18 +143,18 @@ class _ItemsScreenState extends State<ItemsScreen> {
                       ),
 
                       Positioned(
-                top: 8,
+                top: 6,
                 left: 8,
                 child: Container(
                 decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(90),
                 color: Colors.white.withOpacity(1),
                 ),
-                padding: EdgeInsets.symmetric(vertical: 1, horizontal: 8),
+                padding: EdgeInsets.symmetric(vertical: 3, horizontal: 8),
                 child: Text(
                 'Qty  :  ${data['quantity']}',
                 style: TextStyle(
-                fontSize: 14,
+                fontSize: 15,
                 color: Colors.red,
                 fontFamily: 'SimpleSans',
                 ),
@@ -162,7 +162,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 ),
                 ),
                       Positioned(
-                        top: 256,
+                        top: 164,
                         left: 8,
                         child: Container(
                           decoration: BoxDecoration(
@@ -282,6 +282,15 @@ class _ItemsScreenState extends State<ItemsScreen> {
                                   if (donated == true) {
                                     _handImage(snapshot.data!.docs[index].id);
                                   }
+                                },
+                              ),
+                              IconButton(
+                                icon: Icon(Icons.edit),
+                                color: Colors.blueGrey,
+                                onPressed: () {
+
+
+                                  // Perform edit action here
                                 },
                               ),
                             ],
