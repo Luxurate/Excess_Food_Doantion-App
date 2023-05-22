@@ -167,7 +167,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                         child: Container(
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.circular(6),
-                            color: Colors.white.withOpacity(1),
+                            color: Colors.white54.withOpacity(1),
                           ),
                           padding: EdgeInsets.symmetric(vertical: 1, horizontal: 8),
                           child: Text(
