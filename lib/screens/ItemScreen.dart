@@ -41,7 +41,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Colors.amber,
-        elevation: 2,
+        elevation: 82,
         title: Text(
           'What Do You Seek?',
           style: TextStyle(
@@ -162,7 +162,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 ),
                 ),
                       Positioned(
-                        top: 175,
+                        top: 152,
                         left: 8,
                         child: Container(
                           decoration: BoxDecoration(

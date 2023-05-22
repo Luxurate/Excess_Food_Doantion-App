@@ -88,8 +88,8 @@ class _UploadingImageToFirebaseStorageState
     // Show loading indicator
     final loadingGif = Image.asset(
       'assets/loadingif.gif',
-      width: 1000.0,
-      height: 1000.0,
+      width: 900.0,
+      height: 900.0,
     );
 
     showDialog(
@@ -144,7 +144,7 @@ class _UploadingImageToFirebaseStorageState
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
         timeInSecForIosWeb: 1,
-        backgroundColor: Colors.green,
+        backgroundColor: Colors.black,
         textColor: Colors.white,
         fontSize: 16.0,
       );

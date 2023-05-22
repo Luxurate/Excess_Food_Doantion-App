@@ -10,7 +10,63 @@ import 'DonateScreen.dart';
 import 'ItemScreen.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 
-class OpeningScreen extends StatelessWidget {
+class OpeningScreen extends StatefulWidget {
+  @override
+  _OpeningScreenState createState() => _OpeningScreenState();
+}
+
+class _OpeningScreenState extends State<OpeningScreen> {
+  double heartButtonSize = 100.0;
+  double searchButtonSize = 100.0;
+
+  void _onHeartButtonPressed() {
+    Future.delayed(Duration(milliseconds: 100), () {
+    setState(() {
+      heartButtonSize = 100.0;
+      searchButtonSize = 10.0;
+    });
+
+    Future.delayed(Duration(milliseconds: 360), () {
+      setState(() {
+        heartButtonSize = 100.0;
+        searchButtonSize = 100.0;
+      });
+
+      // Perform navigation here
+      Navigator.of(context).push(_createRoute());
+      Fluttertoast.showToast(
+        msg: "Location will be Fetched...",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 5,
+        backgroundColor: Colors.amber,
+        textColor: Colors.black,
+        fontSize: 19.0,
+      );
+    });
+    });
+  }
+
+  void _onSearchButtonPressed() {
+    Future.delayed(Duration(milliseconds: 100), () {
+    setState(() {
+      searchButtonSize = 100.0;
+      heartButtonSize = 10.0; // Set the size of the other icon to be smaller
+    });
+
+    Future.delayed(Duration(milliseconds: 360), () {
+      setState(() {
+        searchButtonSize = 100.0;
+        heartButtonSize = 100.0;
+      });
+
+      // Perform navigation here
+      Navigator.of(context).push(_createRoutec());
+    });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -42,49 +98,42 @@ class OpeningScreen extends StatelessWidget {
                 fontSize: 12.0,
               ),
             ),
-            SizedBox(height: 78.0),
+            SizedBox(height: 88.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Container(
-                  width: 150.0,
-                  height: 100.0,
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 200),
+                  width: heartButtonSize,
+                  height: heartButtonSize,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.amber,
                   ),
-                  child: IconButton(
-                    icon: Image.asset('assets/heart.png'),
-                    color: Colors.white,
-                    onPressed: () {
-                      Navigator.of(context).push(_createRoute());
-                      Fluttertoast.showToast(
-                        msg: "Location will be Fetched...",
-                        toastLength: Toast.LENGTH_SHORT,
-                        gravity: ToastGravity.BOTTOM,
-                        timeInSecForIosWeb: 5,
-                        backgroundColor: Colors.amber,
-                        textColor: Colors.black,
-                        fontSize: 19.0,
-                      );
-
-                    },
+                  child: GestureDetector(
+                    onTap: _onHeartButtonPressed,
+                    child: IconButton(
+                      icon: Image.asset('assets/heart.png'),
+                      color: Colors.white,
+                      onPressed: null,
+                    ),
                   ),
                 ),
-                SizedBox(width: 16.0),
-                Container(
-                  width: 140.0,
-                  height: 100.0,
+                SizedBox(width: 49.0),
+                AnimatedContainer(
+                  duration: Duration(milliseconds: 200),
+                  width: searchButtonSize,
+                  height: searchButtonSize,
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: Colors.amber,
                   ),
-                  child: IconButton(
-                    icon: Image.asset('assets/search.png'),
-                    onPressed: () {
-                      Navigator.of(context).push(_createRoutec());
-
-                    },
+                  child: GestureDetector(
+                    onTap: _onSearchButtonPressed,
+                    child: IconButton(
+                      icon: Image.asset('assets/search.png'),
+                      onPressed: null,
+                    ),
                   ),
                 ),
               ],
@@ -114,8 +163,6 @@ class OpeningScreen extends StatelessWidget {
                       builder: (context) => SignInScreen(),
                     ),
                   );
-
-
                 },
               ),
             ),
@@ -126,34 +173,33 @@ class OpeningScreen extends StatelessWidget {
   }
 }
 
+
 Route _createRoute() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => const MyApp(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.4, 0.1);
-      const end = Offset.zero;
-      final tween = Tween(begin: begin, end: end);
-      final offsetAnimation = animation.drive(tween);
-      return SlideTransition(
-        position: animation.drive(tween),
+      return ScaleTransition(
+        scale: animation,
+        alignment: Alignment.bottomCenter,
         child: child,
       );
     },
+    transitionDuration: Duration(milliseconds: 700),
   );
 }
+
 
 Route _createRoutec() {
   return PageRouteBuilder(
     pageBuilder: (context, animation, secondaryAnimation) => ItemsScreen(),
     transitionsBuilder: (context, animation, secondaryAnimation, child) {
-      const begin = Offset(1.4, 0.1);
-      const end = Offset.zero;
-      final tween = Tween(begin: begin, end: end);
-      final offsetAnimation = animation.drive(tween);
-      return SlideTransition(
-        position: animation.drive(tween),
+      return ScaleTransition(
+        scale: animation,
+        alignment: Alignment.bottomCenter,
         child: child,
       );
     },
+    transitionDuration: Duration(milliseconds: 700),
   );
 }
+
