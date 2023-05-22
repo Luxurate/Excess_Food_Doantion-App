@@ -129,7 +129,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                     children: [
                       ClipRRect(
                         borderRadius: BorderRadius.vertical(top: Radius.circular(14)
-                        , bottom: Radius.circular(15)),
+                        , bottom: Radius.circular(1)),
                         child: Padding(
                           padding: EdgeInsets.only(top: 0),
 
@@ -184,7 +184,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 ],
                 ),
                         ),
-                        //this is for the image in the frame
+                        //this is for the image in the frame==================================================
                         Padding(
                           padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                           child: Column(
