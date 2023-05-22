@@ -190,9 +190,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-
-
-
                             ],
                           ),
                         ),
@@ -201,13 +198,14 @@ class _ItemsScreenState extends State<ItemsScreen> {
                           child: Row(
                             children: [
                               IconButton(
-                                icon: Icon(Icons.delete_forever),
+                                icon: Icon(Icons.delete_outlined),
                                 color: Colors.red,
                                 onPressed: () {
                                   showDialog(
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
+
                                         title: Text("Confirm Delete"),
                                         content: Text("Are you sure you want to delete this item?"),
                                         actions: [
@@ -251,6 +249,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
+
 
                                         title: Text('Do you want to Book this Item?',
                                           style: TextStyle(
