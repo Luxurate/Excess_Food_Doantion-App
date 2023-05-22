@@ -66,7 +66,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
       ),
 
         body: Padding(
-        padding: EdgeInsets.symmetric(horizontal: 9, vertical: 15),
+        padding: EdgeInsets.symmetric(horizontal: 12, vertical: 9),
         child: StreamBuilder<QuerySnapshot>(
           stream: FirebaseFirestore.instance.collection('items').snapshots(),
           builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
@@ -81,8 +81,8 @@ class _ItemsScreenState extends State<ItemsScreen> {
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                 crossAxisCount: 1,
-                crossAxisSpacing: 2,
-                mainAxisSpacing: 9,
+                crossAxisSpacing: 0,
+                mainAxisSpacing: 7,
                 childAspectRatio:1.5,
               ),
               itemCount: snapshot.data!.docs.length,
@@ -104,7 +104,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(18),
-                      color: Colors.black12,
+                      color: Colors.white54,
                       boxShadow: [
                         BoxShadow(
                           color: Colors.white.withOpacity(0.7),
@@ -147,33 +147,33 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 left: 8,
                 child: Container(
                 decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(90),
-                color: Colors.white.withOpacity(1),
+                borderRadius: BorderRadius.circular(6),
+                color: Colors.redAccent.withOpacity(1),
                 ),
                 padding: EdgeInsets.symmetric(vertical: 3, horizontal: 8),
                 child: Text(
                 'Qty  :  ${data['quantity']}',
                 style: TextStyle(
                 fontSize: 15,
-                color: Colors.red,
+                color: Colors.white,
                 fontFamily: 'SimpleSans',
                 ),
                 ),
                 ),
                 ),
                       Positioned(
-                        top: 179,
+                        top: 175,
                         left: 8,
                         child: Container(
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(50),
+                            borderRadius: BorderRadius.circular(6),
                             color: Colors.white.withOpacity(1),
                           ),
                           padding: EdgeInsets.symmetric(vertical: 1, horizontal: 8),
                           child: Text(
                             ' ${data['itemName']}',
                             style: TextStyle(
-                              fontSize: 15,
+                              fontSize: 17,
                               color: Colors.black,
                               fontFamily: 'SimpleSans',
                             ),
