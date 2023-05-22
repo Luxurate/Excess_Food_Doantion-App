@@ -162,7 +162,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 ),
                 ),
                       Positioned(
-                        top: 164,
+                        top: 179,
                         left: 8,
                         child: Container(
                           decoration: BoxDecoration(
@@ -184,8 +184,9 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 ],
                 ),
                         ),
+                        //this is for the image in the frame
                         Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 8, horizontal: 12),
+                          padding: const EdgeInsets.symmetric(vertical: 0, horizontal: 0),
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
@@ -235,7 +236,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
 
                               IconButton(
                                 icon: Icon(Icons.info),
-                                color: Colors.blueGrey,
+                                color: Colors.blue,
                                 onPressed: () {
                                   _showInformation(snapshot.data!.docs[index].id);
 
@@ -286,7 +287,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                               ),
                               IconButton(
                                 icon: Icon(Icons.edit),
-                                color: Colors.blueGrey,
+                                color: Colors.purple,
                                 onPressed: () {
                                   showDialog(
                                     context: context,
