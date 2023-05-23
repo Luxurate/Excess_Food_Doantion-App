@@ -44,13 +44,13 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: ShaderMask(
                       shaderCallback: (bounds) =>
                           LinearGradient(
-                            colors: [Colors.amber, Colors.amberAccent],
+                            colors: [Colors.orange, Colors.deepOrangeAccent],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             stops: [0.0, 1.0],
                           ).createShader(bounds),
                       child: Text(
-                        'DONATISTIC',
+                        'DONATISTI',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Schyler',
