@@ -152,7 +152,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                 ),
                 padding: EdgeInsets.symmetric(vertical: 3, horizontal: 8),
                 child: Text(
-                'Qty  :  ${data['quantityg']}',
+                'Qty  :  ${data['quantity']}',
                 style: TextStyle(
                 fontSize: 15,
                 color: Colors.white,
