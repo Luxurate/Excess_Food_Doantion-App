@@ -76,7 +76,7 @@ class _OpeningScreenState extends State<OpeningScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Myss App',
+      title: 'My App',
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Column(
