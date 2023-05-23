@@ -50,7 +50,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             stops: [0.0, 1.0],
                           ).createShader(bounds),
                       child: Text(
-                        'DONATISTI',
+                        'DONATISTIC',
                         style: TextStyle(
                           color: Colors.white,
                           fontFamily: 'Schyler',
