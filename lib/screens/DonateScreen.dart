@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
 
-      title: 'Firebase Storage Demo',
+      title: 'Firebase Storage ',
       theme: ThemeData(
         primarySwatch: Colors.purple,
       ),
