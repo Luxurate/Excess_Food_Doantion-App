@@ -88,7 +88,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Profile'),
+        title: Text('User Profile'),
         actions: [
           IconButton(
             icon: Icon(Icons.edit),
@@ -105,12 +105,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
                           controller: _nameController,
                           decoration: InputDecoration(
                             labelText: 'Name',
-                          ),
-                        ),
-                        TextField(
-                          controller: _emailController,
-                          decoration: InputDecoration(
-                            labelText: 'Email',
                           ),
                         ),
                         TextField(
