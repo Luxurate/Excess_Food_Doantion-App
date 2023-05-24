@@ -191,7 +191,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             SizedBox(height: 16.0),
             ElevatedButton(
               onPressed: _uploadImage,
-              child: Text('Upload Profile Picture'),
+              child: Text('Upload Profile Pic'),
             ),
 
             SizedBox(height: 16.0),
