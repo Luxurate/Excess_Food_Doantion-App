@@ -10,6 +10,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
 
+import 'MyProfileScreen.dart';
+
 
 
 class ItemsScreen extends StatefulWidget {
@@ -58,6 +60,16 @@ class _ItemsScreenState extends State<ItemsScreen> {
                   context,
                   MaterialPageRoute(
                       builder: (context) => Donatedpage()));
+
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () {
+              Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => ProfileScreen()));
 
             },
           ),
