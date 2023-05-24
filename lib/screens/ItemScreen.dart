@@ -9,8 +9,6 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
 
 
 
@@ -118,7 +116,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                       // Added edge insets
                       border: Border.all(
                         color: Colors.amber,
-                        width: 4,
+                        width: 3,
                       ),
                     ),
 
@@ -138,8 +136,8 @@ class _ItemsScreenState extends State<ItemsScreen> {
                           child: Image.network(
                             data['imageUrl'],
                             fit: BoxFit.cover,
-                            height: 410,
-                            width: 380,
+                            height: 430,
+                            width: 400,
                           ),
                         ),
                       ),
@@ -207,7 +205,6 @@ class _ItemsScreenState extends State<ItemsScreen> {
                                     context: context,
                                     builder: (BuildContext context) {
                                       return AlertDialog(
-
                                         title: Text("Confirm Delete"),
                                         content: Text("Are you sure you want to delete this item?"),
                                         actions: [
@@ -487,15 +484,6 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
   int _currentIndex = 0;
 
   String? get itemId => null;
-  Stream<QuerySnapshot> _getChatMessagesStream() {
-    return FirebaseFirestore.instance
-        .collection('chats')
-        .where('itemId', isEqualTo: itemId)
-        .orderBy('timestamp', descending: true)
-        .snapshots();
-  }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -659,8 +647,6 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
       ),
     );
   }
-
-
 }
 
 
@@ -842,7 +828,4 @@ class _DonatedpageState extends State<Donatedpage> {
         ),
       ),
     );
-  }
-
-
-}
+  }}
