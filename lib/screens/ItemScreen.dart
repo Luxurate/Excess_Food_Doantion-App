@@ -705,7 +705,7 @@ class _DonatedpageState extends State<Donatedpage> {
           builder: (BuildContext context,
               AsyncSnapshot<QuerySnapshot> snapshot) {
             if (snapshot.hasError) {
-              return Text('Something is gone wrong');
+              return Text('Something has gone wrong');
             }
 
             if (snapshot.connectionState == ConnectionState.waiting) {
