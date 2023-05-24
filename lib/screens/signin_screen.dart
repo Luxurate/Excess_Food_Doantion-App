@@ -44,7 +44,7 @@ class _SignInScreenState extends State<SignInScreen> {
                     child: ShaderMask(
                       shaderCallback: (bounds) =>
                           LinearGradient(
-                            colors: [Colors.orange, Colors.deepOrangeAccent],
+                            colors: [Colors.purple, Colors.purpleAccent],
                             begin: Alignment.topCenter,
                             end: Alignment.bottomCenter,
                             stops: [0.0, 1.0],

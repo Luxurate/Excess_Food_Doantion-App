@@ -64,7 +64,7 @@ class ThemeHelper{
         ),
       ),
       minimumSize: MaterialStateProperty.all(Size(50, 50)),
-      backgroundColor: MaterialStateProperty.all(Colors.amber),
+      backgroundColor: MaterialStateProperty.all(Colors.purple),
       shadowColor: MaterialStateProperty.all(Colors.black),
     );
   }
@@ -77,7 +77,7 @@ class ThemeHelper{
         TextButton(
           child: Text(
             "OK",
-            style: TextStyle(color: Colors.amber),
+            style: TextStyle(color: Colors.purple),
           ),
           style: ButtonStyle(
               backgroundColor: MaterialStateProperty.all(Colors.black38)),

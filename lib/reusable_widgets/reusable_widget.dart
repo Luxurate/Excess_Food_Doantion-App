@@ -61,9 +61,9 @@ Widget firebaseUIButton(BuildContext context, String title, Function onTap) {
         child: Text(
           title,
           style: const TextStyle(
-            color: Colors.black87,
+            color: Colors.white,
             fontWeight: FontWeight.bold,
-            fontSize: 16,
+            fontSize: 21,
           ),
         ),
         style: ButtonStyle(
@@ -71,7 +71,7 @@ Widget firebaseUIButton(BuildContext context, String title, Function onTap) {
             if (states.contains(MaterialState.pressed)) {
               return Colors.black;
             }
-            return Colors.amber;
+            return Colors.purple;
           }),
           shape: MaterialStateProperty.all<RoundedRectangleBorder>(
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
