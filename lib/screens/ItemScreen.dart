@@ -686,7 +686,7 @@ class _DonatedpageState extends State<Donatedpage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.purple,
         elevation: 2,
         title: Text(
           ' Booked / Donated ',
