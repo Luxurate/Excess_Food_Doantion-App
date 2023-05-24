@@ -9,6 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/material.dart';
 
 
 
@@ -485,6 +487,15 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
   int _currentIndex = 0;
 
   String? get itemId => null;
+  Stream<QuerySnapshot> _getChatMessagesStream() {
+    return FirebaseFirestore.instance
+        .collection('chats')
+        .where('itemId', isEqualTo: itemId)
+        .orderBy('timestamp', descending: true)
+        .snapshots();
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -648,6 +659,8 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
       ),
     );
   }
+
+
 }
 
 
@@ -669,11 +682,6 @@ class _DonatedpageState extends State<Donatedpage> {
       _selectedIndex = index;
     });
   }
-
-
-
-
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -708,10 +716,10 @@ class _DonatedpageState extends State<Donatedpage> {
 
             return GridView.builder(
               gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 1,
+                crossAxisCount: 3,
                 crossAxisSpacing: 8,
                 mainAxisSpacing: 8,
-                childAspectRatio: 2,
+                childAspectRatio: 0.4,
               ),
               itemCount: snapshot.data!.docs.length,
               itemBuilder: (BuildContext context, int index) {
@@ -752,7 +760,7 @@ class _DonatedpageState extends State<Donatedpage> {
                                     top: Radius.circular(0)
                                     , bottom: Radius.circular(9)),
                                 child: Padding(
-                                  padding: EdgeInsets.only(top: 4),
+                                  padding: EdgeInsets.only(top: 0),
 
                                   child: Image.network(
                                     data['imageUrl'],
@@ -784,8 +792,8 @@ class _DonatedpageState extends State<Donatedpage> {
                                 ),
                               ),
                               Positioned(
-                                top: 146,
-                                left: 8,
+                                top: 260,
+                                left: 1,
                                 child: Container(
                                   decoration: BoxDecoration(
                                     borderRadius: BorderRadius.circular(50),
@@ -796,7 +804,7 @@ class _DonatedpageState extends State<Donatedpage> {
                                   child: Text(
                                     ' ${data['itemName']}',
                                     style: TextStyle(
-                                      fontSize: 15,
+                                      fontSize: 13,
                                       color: Colors.black,
                                       fontFamily: 'SimpleSans',
                                     ),
@@ -821,17 +829,9 @@ class _DonatedpageState extends State<Donatedpage> {
                               right: 8, top: 1, bottom: 0),
                           child: Row(
                             children: [
-
-
-
-
-
-
                             ],
                           ),
                         ),
-
-
                       ],
                     ),
                   ),
@@ -842,4 +842,7 @@ class _DonatedpageState extends State<Donatedpage> {
         ),
       ),
     );
-  }}
+  }
+
+
+}
