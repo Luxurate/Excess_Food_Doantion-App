@@ -91,7 +91,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
         centerTitle: true,
         backgroundColor: Colors.purple,
         title: Text(
-          'User Profile',
+          'My Profile',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'SimpleSans',
