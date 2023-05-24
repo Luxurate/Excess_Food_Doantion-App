@@ -42,7 +42,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.purple,
         elevation: 82,
         title: Text(
           'What Do You Seek?',
@@ -127,7 +127,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                       ],
                       // Added edge insets
                       border: Border.all(
-                        color: Colors.redAccent,
+                        color: Colors.purple,
                         width: 3,
                       ),
                     ),
@@ -523,7 +523,7 @@ class _ItemDetailScreenState extends State<ItemDetailScreen> {
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
               border: Border.all(
-                color: Colors.amber,
+                color: Colors.purple,
                 width: 3,
               ),
             ),

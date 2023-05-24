@@ -235,7 +235,7 @@ class _UploadingImageToFirebaseStorageState
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.redAccent,
+        backgroundColor: Colors.purple,
         title: Text(
           'Donation Screen',
           style: TextStyle(

@@ -107,46 +107,54 @@ class _OpeningScreenState extends State<OpeningScreen> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  width: heartButtonSize,
-                  height: heartButtonSize,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    color: Colors.redAccent,
-                  ),
-                  child: GestureDetector(
-                    onTap: _onHeartButtonPressed,
-                    child: IconButton(
-                      icon: Image.asset('assets/heart.png'),
-                      color: Colors.white,
-                      onPressed: null,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(26), // Set your desired border radius value
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: heartButtonSize,
+                    height: heartButtonSize,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.purple,
+                    ),
+                    child: GestureDetector(
+                      onTap: _onHeartButtonPressed,
+                      child: IconButton(
+                        icon: Image.asset('assets/heart.png'),
+                        color: Colors.white,
+                        onPressed: null,
+                      ),
                     ),
                   ),
                 ),
+
                 const SizedBox(width: 60.0),
-                AnimatedContainer(
-                  duration: const Duration(milliseconds: 200),
-                  width: searchButtonSize,
-                  height: searchButtonSize,
-                  decoration: const BoxDecoration(
-                    shape: BoxShape.rectangle,
-                    color: Colors.redAccent,
-                  ),
-                  child: GestureDetector(
-                    onTap: _onSearchButtonPressed,
-                    child: IconButton(
-                      icon: Image.asset('assets/search1.png'),
-                      onPressed: null,
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(26), // Set your desired border radius value
+                  child: AnimatedContainer(
+                    duration: const Duration(milliseconds: 200),
+                    width: searchButtonSize,
+                    height: searchButtonSize,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.rectangle,
+                      color: Colors.purple,
+                    ),
+                    child: GestureDetector(
+                      onTap: _onSearchButtonPressed,
+                      child: IconButton(
+                        icon: Image.asset('assets/search1.png'),
+                        onPressed: null,
+                      ),
                     ),
                   ),
                 ),
+
               ],
             ),
             const SizedBox(height: 10),
             Expanded(
               child: Image.asset(
-                'assets/barb2.png',
+                'assets/barb3.png',
                 fit: BoxFit.fitWidth,
                 alignment: Alignment.bottomCenter,
                 width: 300,
