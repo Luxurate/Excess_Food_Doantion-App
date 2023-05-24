@@ -112,8 +112,8 @@ class _OpeningScreenState extends State<OpeningScreen> {
                   width: heartButtonSize,
                   height: heartButtonSize,
                   decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.amber,
+                    shape: BoxShape.rectangle,
+                    color: Colors.redAccent,
                   ),
                   child: GestureDetector(
                     onTap: _onHeartButtonPressed,
@@ -124,19 +124,19 @@ class _OpeningScreenState extends State<OpeningScreen> {
                     ),
                   ),
                 ),
-                const SizedBox(width: 49.0),
+                const SizedBox(width: 60.0),
                 AnimatedContainer(
                   duration: const Duration(milliseconds: 200),
                   width: searchButtonSize,
                   height: searchButtonSize,
                   decoration: const BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Colors.amber,
+                    shape: BoxShape.rectangle,
+                    color: Colors.redAccent,
                   ),
                   child: GestureDetector(
                     onTap: _onSearchButtonPressed,
                     child: IconButton(
-                      icon: Image.asset('assets/search.png'),
+                      icon: Image.asset('assets/search1.png'),
                       onPressed: null,
                     ),
                   ),
@@ -146,7 +146,7 @@ class _OpeningScreenState extends State<OpeningScreen> {
             const SizedBox(height: 10),
             Expanded(
               child: Image.asset(
-                'assets/barb1.png',
+                'assets/barb2.png',
                 fit: BoxFit.fitWidth,
                 alignment: Alignment.bottomCenter,
                 width: 300,

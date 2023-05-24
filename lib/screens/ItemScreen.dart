@@ -42,12 +42,12 @@ class _ItemsScreenState extends State<ItemsScreen> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.redAccent,
         elevation: 82,
         title: Text(
           'What Do You Seek?',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontFamily: 'SimpleSans',
             fontSize: 20,
           ),
@@ -127,7 +127,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                       ],
                       // Added edge insets
                       border: Border.all(
-                        color: Colors.amber,
+                        color: Colors.redAccent,
                         width: 3,
                       ),
                     ),
@@ -686,12 +686,12 @@ class _DonatedpageState extends State<Donatedpage> {
       backgroundColor: Colors.white,
       appBar: AppBar(
         centerTitle: true,
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.redAccent,
         elevation: 2,
         title: Text(
           ' Booked / Donated ',
           style: TextStyle(
-            color: Colors.black,
+            color: Colors.white,
             fontFamily: 'SimpleSans',
             fontSize: 20,
           ),

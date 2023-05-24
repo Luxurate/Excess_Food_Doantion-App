@@ -235,13 +235,13 @@ class _UploadingImageToFirebaseStorageState
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.amber,
+        backgroundColor: Colors.redAccent,
         title: Text(
           'Donation Screen',
           style: TextStyle(
             fontSize: 21,
             fontWeight: FontWeight.bold,
-            color: Colors.black,
+            color: Colors.white,
             fontFamily: 'SimpleSans',
           ),
         ),

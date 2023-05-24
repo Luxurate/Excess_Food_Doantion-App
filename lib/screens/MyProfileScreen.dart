@@ -88,7 +88,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Profile'),
+        centerTitle: true,
+        backgroundColor: Colors.redAccent,
+        title: Text(
+          'User Profile',
+          style: TextStyle(
+            color: Colors.white,
+            fontFamily: 'SimpleSans',
+            fontSize: 20,
+          ),
+        ),
+
         actions: [
           IconButton(
             icon: Icon(Icons.edit),
