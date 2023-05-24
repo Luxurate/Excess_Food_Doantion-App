@@ -689,7 +689,7 @@ class _DonatedpageState extends State<Donatedpage> {
         backgroundColor: Colors.purple,
         elevation: 2,
         title: Text(
-          ' Booked / Donated ',
+          ' All Donated Items ',
           style: TextStyle(
             color: Colors.white,
             fontFamily: 'SimpleSans',
