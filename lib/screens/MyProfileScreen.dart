@@ -76,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
       print('Error uploading profile picture: $e');
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Failed to upload profile picture. Please try again.'),
+          content: Text('Failed to upload . Please try again.'),
         ),
       );
     }
