@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(
-          content: Text('Profile picture uploaded successfully!'),
+          content: Text('Profile picture uploaded!'),
         ),
       );
     } catch (e) {
