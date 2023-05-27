@@ -471,12 +471,16 @@ void _handImage(String docId) async {
 }
 
 
-
 void _showInformation(String docId) async {
-  final doc = await FirebaseFirestore.instance.collection('users').doc(docId).get();
-  final username = doc['email'];
+  final doc = await FirebaseFirestore.instance.collection('items').doc(docId).get();
+  final userId = doc['uid'];
+
+  final userDoc = await FirebaseFirestore.instance.collection('users').doc(userId).get();
+  final userData = userDoc.data() as Map<String, dynamic>;
+  final email = userData['email'] as String;
+
   Fluttertoast.showToast(
-    msg: "Donated by: $username",
+    msg: "Email: $email",
     toastLength: Toast.LENGTH_SHORT,
     gravity: ToastGravity.BOTTOM,
     timeInSecForIosWeb: 1,
@@ -485,6 +489,7 @@ void _showInformation(String docId) async {
     fontSize: 16.0,
   );
 }
+
 
 
 class ItemDetailScreen extends StatefulWidget {
