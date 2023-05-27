@@ -57,7 +57,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
         ),
         actions: <Widget>[
           IconButton(
-            icon: Icon(Icons.bookmark),
+            icon: Icon(Icons.collections_bookmark),
             onPressed: () {
               Navigator.push(
                   context,
@@ -67,7 +67,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
             },
           ),
           IconButton(
-            icon: Icon(Icons.person),
+            icon: Icon(Icons.chat_bubble_outline),
             onPressed: () async {
               final currentUser = FirebaseAuth.instance.currentUser;
               if (currentUser != null) {

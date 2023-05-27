@@ -12,7 +12,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final CollectionReference _chatsCollection = FirebaseFirestore.instance.collection('chats');
   final CollectionReference _usersCollection = FirebaseFirestore.instance.collection('users');
-  late String ?_currentUserEmail;
+  late String ?_currentUserEmail= 'unknown';
   String? _selectedRecipientEmail;
 
   @override
@@ -41,6 +41,12 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
       body: Column(
         children: [
+          SizedBox(height: 16.0),
+          Text(
+            'Current User Email: ${_currentUserEmail ?? 'Unknown'}',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          SizedBox(height: 16.0),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: _chatsCollection
