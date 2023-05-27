@@ -1,4 +1,5 @@
 import 'dart:math';
+
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -61,6 +62,21 @@ class _ItemsScreenState extends State<ItemsScreen> {
                   MaterialPageRoute(
                       builder: (context) => Donatedpage()));
 
+            },
+          ),
+          IconButton(
+            icon: Icon(Icons.person),
+            onPressed: () async {
+              final currentUser = FirebaseAuth.instance.currentUser;
+              if (currentUser != null) {
+                final userDoc = await FirebaseFirestore.instance
+                    .collection('users')
+                    .doc(currentUser.uid)
+                    .get();
+                final userData = userDoc.data() as Map<String, dynamic>;
+                final userEmail = userData['email'] as String;
+               // Navigator.push(context, MaterialPageRoute(builder: (context) => ,),);
+              }
             },
           ),
 
