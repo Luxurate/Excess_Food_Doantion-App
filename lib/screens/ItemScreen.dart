@@ -77,6 +77,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                     .get();
                 final userData = userDoc.data() as Map<String, dynamic>;
                 final userEmail = userData['email'] as String;
+                print(userEmail);
                 Navigator.push(context, MaterialPageRoute(builder: (context) => UsersListScreen(),),);
               }
             },

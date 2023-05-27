@@ -27,7 +27,7 @@ class UsersListScreen extends StatelessWidget {
                         context,
                         MaterialPageRoute(
                           builder: (context) => ChatScreen(
-                            currentUserEmail: 'currentuser@example.com',
+                            currentUserEmail: email,
                             tappedUserEmail: email,
                           ),
                         ),
