@@ -12,7 +12,7 @@ class _ChatScreenState extends State<ChatScreen> {
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final CollectionReference _chatsCollection = FirebaseFirestore.instance.collection('chats');
   final CollectionReference _usersCollection = FirebaseFirestore.instance.collection('users');
-  late String ?_currentUserEmail= 'unknown';
+  String? _currentUserEmail;
   String? _selectedRecipientEmail;
 
   @override
@@ -26,13 +26,18 @@ class _ChatScreenState extends State<ChatScreen> {
     if (user != null) {
       final userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
       final userData = userDoc.data() as Map<String, dynamic>;
-      _currentUserEmail = userData['email'] as String;
+      setState(() {
+        _currentUserEmail = userData['email'] as String?;
+      });
       print(_currentUserEmail);
     } else {
       // User is not logged in or user document not found
-      _currentUserEmail = 'Unknown';
+      setState(() {
+        _currentUserEmail = 'Unknown';
+      });
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -149,21 +154,19 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   Future<void> _sendMessage() async {
-
-      final message = _messageController.text.trim();
-      if (message.isNotEmpty) {
-        try {
-          await _chatsCollection.add({
-            'sender': _currentUserEmail,
-
-            'receiver': _selectedRecipientEmail,
-            'message': message,
-            'timestamp': FieldValue.serverTimestamp(),
-          });
-          _messageController.clear();
-        } catch (e) {
-          print('Error sending message: $e');
-        }
+    final message = _messageController.text.trim();
+    if (message.isNotEmpty) {
+      try {
+        await _chatsCollection.add({
+          'sender': _currentUserEmail,
+          'receiver': _selectedRecipientEmail,
+          'message': message,
+          'timestamp': FieldValue.serverTimestamp(),
+        });
+        _messageController.clear();
+      } catch (e) {
+        print('Error sending message: $e');
       }
     }
   }
+}
