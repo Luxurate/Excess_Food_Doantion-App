@@ -1,60 +1,8 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class UsersListScreen extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Users'),
-      ),
-      body: StreamBuilder<QuerySnapshot>(
-        stream: FirebaseFirestore.instance.collection('users').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.hasData) {
-            final users = snapshot.data!.docs;
-            return ListView.builder(
-              itemCount: users.length,
-              itemBuilder: (context, index) {
-                final userData = users[index].data() as Map<String, dynamic>;
-
-                final email = userData['email'] as String? ?? 'N/A';
-
-                return ListTile(
-                  subtitle: GestureDetector(
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => ChatScreen(
-                            currentUserEmail: email,
-                            tappedUserEmail: email,
-                          ),
-                        ),
-                      );
-                    },
-                    child: Text(email),
-                  ),
-                );
-              },
-            );
-          } else if (snapshot.hasError) {
-            return Center(child: Text('Error: ${snapshot.error}'));
-          } else {
-            return Center(child: CircularProgressIndicator());
-          }
-        },
-      ),
-    );
-  }
-}
-
 class ChatScreen extends StatefulWidget {
-  final String currentUserEmail;
-  final String tappedUserEmail;
-
-  ChatScreen({required this.currentUserEmail, required this.tappedUserEmail});
-
   @override
   _ChatScreenState createState() => _ChatScreenState();
 }
@@ -62,42 +10,42 @@ class ChatScreen extends StatefulWidget {
 class _ChatScreenState extends State<ChatScreen> {
   final TextEditingController _messageController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
-  late CollectionReference _messagesCollection;
+  final CollectionReference _chatsCollection = FirebaseFirestore.instance.collection('chats');
+  final CollectionReference _usersCollection = FirebaseFirestore.instance.collection('users');
+  late String ?_currentUserEmail;
+  String? _selectedRecipientEmail;
 
   @override
   void initState() {
     super.initState();
-    _messagesCollection = _firestore.collection('messages');
+    _getCurrentUserEmail();
   }
 
-  Future<void> _sendMessage(String message) async {
-    try {
-      await _messagesCollection.add({
-        'sender': widget.currentUserEmail,
-        'receiver': widget.tappedUserEmail,
-        'message': message,
-        'timestamp': FieldValue.serverTimestamp(),
-      });
-      _messageController.clear();
-    } catch (e) {
-      // Handle error
-      print('Error sending message: $e');
+  Future<void> _getCurrentUserEmail() async {
+    final User? user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      final userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
+      final userData = userDoc.data() as Map<String, dynamic>;
+      _currentUserEmail = userData['email'] as String;
+      print(_currentUserEmail);
+    } else {
+      // User is not logged in or user document not found
+      _currentUserEmail = 'Unknown';
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat with ${widget.tappedUserEmail}'),
+        title: Text('Chat App'),
       ),
       body: Column(
         children: [
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
-              stream: _messagesCollection
-                  .where('sender', isEqualTo: widget.currentUserEmail)
-                  .where('receiver', isEqualTo: widget.tappedUserEmail)
+              stream: _chatsCollection
+                  .where('sender', isEqualTo: _currentUserEmail)
+                  .where('receiver', isEqualTo: _selectedRecipientEmail)
                   .orderBy('timestamp', descending: true)
                   .snapshots(),
               builder: (context, snapshot) {
@@ -107,22 +55,16 @@ class _ChatScreenState extends State<ChatScreen> {
                     reverse: true,
                     itemCount: messages.length,
                     itemBuilder: (context, index) {
-                      final messageData =
-                      messages[index].data() as Map<String, dynamic>;
+                      final messageData = messages[index].data() as Map<String, dynamic>;
                       final sender = messageData['sender'] as String?;
+                      final receiver = messageData['receiver'] as String?;
                       final message = messageData['message'] as String?;
-                      final isCurrentUser =
-                          sender == widget.currentUserEmail;
 
                       return ListTile(
                         title: Text(message ?? ''),
                         subtitle: Text(
-                          sender ?? '',
-                          style: TextStyle(
-                            fontWeight: isCurrentUser
-                                ? FontWeight.bold
-                                : FontWeight.normal,
-                          ),
+                          'From: $sender\nTo: $receiver',
+                          style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       );
                     },
@@ -142,31 +84,80 @@ class _ChatScreenState extends State<ChatScreen> {
                 Expanded(
                   child: TextField(
                     controller: _messageController,
-                    decoration: InputDecoration(
-                      hintText: 'Type a message...',
-                    ),
+                    decoration: InputDecoration(hintText: 'Type a message...'),
                   ),
                 ),
                 IconButton(
                   icon: Icon(Icons.send),
-                  onPressed: () {
-                    final message = _messageController.text.trim();
-                    if (message.isNotEmpty) {
-                      _sendMessage(message);
-                    }
-                  },
+                  onPressed: _selectedRecipientEmail != null ? _sendMessage : null,
                 ),
               ],
             ),
+          ),
+          SizedBox(height: 16.0),
+          Text(
+            'Selected Recipient: ${_selectedRecipientEmail ?? 'None'}',
+            style: TextStyle(fontWeight: FontWeight.bold),
+          ),
+          ElevatedButton(
+            onPressed: _selectRecipient,
+            child: Text('Select Recipient'),
           ),
         ],
       ),
     );
   }
-}
 
-void main() {
-  runApp(MaterialApp(
-    home: UsersListScreen(),
-  ));
-}
+  Future<void> _selectRecipient() async {
+    final QuerySnapshot snapshot = await _usersCollection.get();
+
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text('Select Recipient'),
+          content: SingleChildScrollView(
+            child: Column(
+              children: snapshot.docs.map((DocumentSnapshot document) {
+                final userData = document.data() as Map<String, dynamic>;
+                final email = userData['email'] as String?;
+
+                return ListTile(
+                  title: Text(email ?? ''),
+                  onTap: () {
+                    Navigator.pop(context, email);
+                  },
+                );
+              }).toList(),
+            ),
+          ),
+        );
+      },
+    ).then((selectedEmail) {
+      if (selectedEmail != null) {
+        setState(() {
+          _selectedRecipientEmail = selectedEmail;
+        });
+      }
+    });
+  }
+
+  Future<void> _sendMessage() async {
+
+      final message = _messageController.text.trim();
+      if (message.isNotEmpty) {
+        try {
+          await _chatsCollection.add({
+            'sender': _currentUserEmail,
+
+            'receiver': _selectedRecipientEmail,
+            'message': message,
+            'timestamp': FieldValue.serverTimestamp(),
+          });
+          _messageController.clear();
+        } catch (e) {
+          print('Error sending message: $e');
+        }
+      }
+    }
+  }
