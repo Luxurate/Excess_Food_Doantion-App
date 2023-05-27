@@ -1,5 +1,6 @@
 import 'dart:math';
 
+import 'package:fooddonation/screens/Mails/MailScreen.dart';
 import 'package:share/share.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter_phone_direct_caller/flutter_phone_direct_caller.dart';
@@ -77,7 +78,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                     .get();
                 final userData = userDoc.data() as Map<String, dynamic>;
                 final userEmail = userData['email'] as String;
-                Navigator.push(context, MaterialPageRoute(builder: (context) => ChatScreen(),),);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => MailScreen(),),);
               }
             },
           ),

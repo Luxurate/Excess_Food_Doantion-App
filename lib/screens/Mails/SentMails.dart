@@ -2,12 +2,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-class ChatScreen extends StatefulWidget {
+class SentMaills extends StatefulWidget {
   @override
-  _ChatScreenState createState() => _ChatScreenState();
+  _SentMaillsState createState() => _SentMaillsState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
+class _SentMaillsState extends State<SentMaills> {
   final TextEditingController _messageController = TextEditingController();
   final FirebaseFirestore _firestore = FirebaseFirestore.instance;
   final CollectionReference _chatsCollection = FirebaseFirestore.instance.collection('chats');
@@ -18,7 +18,10 @@ class _ChatScreenState extends State<ChatScreen> {
   @override
   void initState() {
     super.initState();
-    _getCurrentUserEmail();
+    _getCurrentUserEmail().then((_) {
+      // setState to trigger the rebuild after retrieving the current user email
+      setState(() {});
+    });
   }
 
   Future<void> _getCurrentUserEmail() async {
@@ -26,15 +29,11 @@ class _ChatScreenState extends State<ChatScreen> {
     if (user != null) {
       final userDoc = await FirebaseFirestore.instance.collection('users').doc(user.uid).get();
       final userData = userDoc.data() as Map<String, dynamic>;
-      setState(() {
-        _currentUserEmail = userData['email'] as String?;
-      });
+      _currentUserEmail = userData['email'] as String?;
       print(_currentUserEmail);
     } else {
       // User is not logged in or user document not found
-      setState(() {
-        _currentUserEmail = 'Unknown';
-      });
+      _currentUserEmail = 'Unknown';
     }
   }
 
@@ -42,21 +41,22 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Mail App'),
+        title: Text('Sent Mails'),
       ),
       body: Column(
         children: [
           SizedBox(height: 16.0),
           Text(
-            'Your Email: ${_currentUserEmail ?? 'Unknown'}',
+            'Current User Email: ${_currentUserEmail ?? 'Unknown'}',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 16.0),
           Expanded(
             child: StreamBuilder<QuerySnapshot>(
               stream: _chatsCollection
-                  .where('sender', isEqualTo: _currentUserEmail)
+                  .where('sender', isEqualTo:  _currentUserEmail)
                   .where('receiver', isEqualTo: _selectedRecipientEmail)
+
                   .orderBy('timestamp', descending: true)
                   .snapshots(),
               builder: (context, snapshot) {
