@@ -11,6 +11,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:page_transition/page_transition.dart';
 
+import 'UsersScreen.dart';
+
 
 
 
@@ -75,7 +77,7 @@ class _ItemsScreenState extends State<ItemsScreen> {
                     .get();
                 final userData = userDoc.data() as Map<String, dynamic>;
                 final userEmail = userData['email'] as String;
-               // Navigator.push(context, MaterialPageRoute(builder: (context) => ,),);
+                Navigator.push(context, MaterialPageRoute(builder: (context) => UsersListScreen(),),);
               }
             },
           ),
@@ -471,8 +473,8 @@ void _handImage(String docId) async {
 
 
 void _showInformation(String docId) async {
-  final doc = await FirebaseFirestore.instance.collection('items').doc(docId).get();
-  final username = doc['username'];
+  final doc = await FirebaseFirestore.instance.collection('users').doc(docId).get();
+  final username = doc['email'];
   Fluttertoast.showToast(
     msg: "Donated by: $username",
     toastLength: Toast.LENGTH_SHORT,
