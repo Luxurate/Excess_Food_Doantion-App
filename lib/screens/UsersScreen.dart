@@ -42,13 +42,13 @@ class _ChatScreenState extends State<ChatScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Chat App'),
+        title: Text('Mail App'),
       ),
       body: Column(
         children: [
           SizedBox(height: 16.0),
           Text(
-            'Current User Email: ${_currentUserEmail ?? 'Unknown'}',
+            'Your Email: ${_currentUserEmail ?? 'Unknown'}',
             style: TextStyle(fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 16.0),
