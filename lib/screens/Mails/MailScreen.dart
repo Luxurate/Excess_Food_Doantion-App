@@ -81,7 +81,7 @@ class _MailScreenState extends State<MailScreen> {
               height: 200,
             ),
             const Text(
-              'Your Mails....',
+              'Mail Box',
               textAlign: TextAlign.end,
               style: TextStyle(
                 fontFamily: 'SimpleSans',
@@ -115,7 +115,7 @@ class _MailScreenState extends State<MailScreen> {
                     child: GestureDetector(
                       onTap: _onHeartButtonPressed,
                       child: IconButton(
-                        icon: Image.asset('assets/heart.png'),
+                        icon: Image.asset('assets/receiver.png'),
                         color: Colors.white,
                         onPressed: null,
                       ),
@@ -137,7 +137,7 @@ class _MailScreenState extends State<MailScreen> {
                     child: GestureDetector(
                       onTap: _onSearchButtonPressed,
                       child: IconButton(
-                        icon: Image.asset('assets/search1.png'),
+                        icon: Image.asset('assets/mail.png'),
                         onPressed: null,
                       ),
                     ),
@@ -149,7 +149,7 @@ class _MailScreenState extends State<MailScreen> {
             const SizedBox(height: 10),
             Expanded(
               child: Image.asset(
-                'assets/barb3.png',
+                'assets/mailscreen.png',
                 fit: BoxFit.fitWidth,
                 alignment: Alignment.bottomCenter,
                 width: 300,
