@@ -74,7 +74,7 @@ class _SentMaillsState extends State<SentMaills> {
                       return ListTile(
                         title: Text(message ?? ''),
                         subtitle: Text(
-                          'From: $sender\nTo: $receiver',
+                          'To: $receiver',
                           style: TextStyle(fontWeight: FontWeight.bold),
                         ),
                       );
