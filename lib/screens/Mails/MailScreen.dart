@@ -71,7 +71,7 @@ class _MailScreenState extends State<MailScreen> {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'My App',
+      title: 'My app',
       home: Scaffold(
         backgroundColor: Colors.white,
         body: Column(
