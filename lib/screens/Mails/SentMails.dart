@@ -42,6 +42,7 @@ class _SentMaillsState extends State<SentMaills> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Sent Mails'),
+        backgroundColor: Colors.purple,
       ),
       body: Column(
         children: [

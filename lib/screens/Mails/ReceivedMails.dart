@@ -42,6 +42,7 @@ class _ReceivedMailsState extends State<ReceivedMails> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Received Mails'),
+        backgroundColor: Colors.purple,
       ),
       body: Column(
         children: [
