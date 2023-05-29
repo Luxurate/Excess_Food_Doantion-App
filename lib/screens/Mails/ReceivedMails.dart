@@ -50,6 +50,7 @@ class _ReceivedMailsState extends State<ReceivedMails> {
           Text(
             'Current User Email: ${_currentUserEmail ?? 'Unknown'}',
             style: TextStyle(fontWeight: FontWeight.bold),
+
           ),
           SizedBox(height: 16.0),
           Expanded(
@@ -114,6 +115,7 @@ class _ReceivedMailsState extends State<ReceivedMails> {
           ElevatedButton(
             onPressed: _selectRecipient,
             child: Text('Select Recipient'),
+
           ),
         ],
       ),
