@@ -192,6 +192,7 @@ class _UploadingImageToFirebaseStorageState
   void initState() {
     super.initState();
     _getCurrentLocation();
+
   }
 
   Future<void> _getCurrentLocation() async {
@@ -232,6 +233,23 @@ class _UploadingImageToFirebaseStorageState
 
   @override
   Widget build(BuildContext context) {
+    List<String> categories = [
+      'Select Food Type',
+      'Category 1',
+      'Category 2',
+      'Category 3',
+
+    ];
+
+    String? selectedCategory;
+
+    @override
+    void initState() {
+      super.initState();
+      selectedCategory = categories.isNotEmpty ? categories[0] : null;
+    }
+
+
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -261,6 +279,7 @@ class _UploadingImageToFirebaseStorageState
                   height: 400,
                 ),
               ),
+
             SizedBox(height: 16),
             TextField(
               controller: _userNameController,
@@ -278,6 +297,21 @@ class _UploadingImageToFirebaseStorageState
               decoration: ThemeHelper().textInputDecoration(
                 'Food Item Name',
               ),
+            ),
+            DropdownButton<String>(
+              value: selectedCategory,
+              hint: Text('Select Food Type'), // Add a hint text
+              onChanged: (String? newValue) {
+                setState(() {
+                  selectedCategory = newValue;
+                });
+              },
+              items: categories.map<DropdownMenuItem<String>>((String value) {
+                return DropdownMenuItem<String>(
+                  value: value,
+                  child: Text(value),
+                );
+              }).toList(),
             ),
             SizedBox(height: 16),
             TextField(
