@@ -178,7 +178,18 @@ class _OpeningScreenState extends State<OpeningScreen> {
                   );
                 },
               ),
+
             ),
+            Align(
+              alignment: Alignment.centerRight,
+              child: TextButton(
+                onPressed: () {
+                  // Handle feedback button press
+                },
+                child: Text('Feedback'),
+              ),
+            ),
+
           ],
         ),
       ),
