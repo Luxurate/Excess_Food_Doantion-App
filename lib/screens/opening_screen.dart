@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import 'RatingScreen.dart';
 import 'signin_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:fooddonation/reusable_widgets/reusable_widget.dart';
@@ -184,7 +185,11 @@ class _OpeningScreenState extends State<OpeningScreen> {
               alignment: Alignment.centerRight,
               child: TextButton(
                 onPressed: () {
-                  // Handle feedback button press
+                  Navigator.of(context).push(
+                    MaterialPageRoute(
+                      builder: (context) => RatingPage(),
+                    ),
+                  );
                 },
                 child: Text('Feedback'),
               ),
