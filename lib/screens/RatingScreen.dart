@@ -14,6 +14,7 @@ class _RatingPageState extends State<RatingPage> with SingleTickerProviderStateM
   int _rating = 0;
   String _feedback = '';
   late String _userEmail;
+  final TextEditingController _feedbackController = TextEditingController();
 
   @override
   void initState() {
@@ -52,6 +53,7 @@ class _RatingPageState extends State<RatingPage> with SingleTickerProviderStateM
         _rating = 0;
         _feedback = '';
       });
+      _feedbackController.clear(); // Clear the feedback text field
     }).catchError((error) {
       print('Failed to submit feedback: $error');
     });
@@ -83,7 +85,7 @@ class _RatingPageState extends State<RatingPage> with SingleTickerProviderStateM
                 final starColor = index < _rating ? Colors.yellow : Colors.grey;
                 return IconButton(
                   icon: AnimatedIcon(
-                    icon: AnimatedIcons.event_add,
+                    icon: AnimatedIcons.add_event,
                     color: starColor,
                     progress: _animationController,
                   ),
@@ -102,6 +104,7 @@ class _RatingPageState extends State<RatingPage> with SingleTickerProviderStateM
                 border: Border.all(color: Colors.purple, width: 1),
               ),
               child: TextField(
+                controller: _feedbackController, // Feedback text field controller
                 onChanged: (value) {
                   setState(() {
                     _feedback = value;
@@ -180,6 +183,7 @@ class _RatingPageState extends State<RatingPage> with SingleTickerProviderStateM
   @override
   void dispose() {
     _animationController.dispose();
+    _feedbackController.dispose(); // Dispose the feedback text field controller
     super.dispose();
   }
 }
