@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class RatingPage extends StatefulWidget {
   const RatingPage({Key? key}) : super(key: key);
@@ -18,9 +19,19 @@ class _RatingPageState extends State<RatingPage> {
   }
 
   void _submitFeedback() {
-    // TODO: Handle feedback submission
-    print('Rating: $_rating');
-    print('Feedback: $_feedback');
+    FirebaseFirestore.instance.collection('ratings').add({
+      'rating': _rating,
+      'feedback': _feedback,
+    }).then((value) {
+      print('Feedback submitted');
+      // Reset the rating and feedback fields
+      setState(() {
+        _rating = 0;
+        _feedback = '';
+      });
+    }).catchError((error) {
+      print('Failed to submit feedback: $error');
+    });
   }
 
   @override
